@@ -7162,8 +7162,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd71950456f8e954f8ae37e49d43b210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  sprintSpeed: 10
+  walkSpeed: 4
+  sprintSpeed: 8
+  currentSpeed: 0
+  stamina: 3
+  maxStamina: 3
+  staminaDecreaseRate: 1
+  staminaIncreaseRate: 1
+  staminaEmpty: 0
   _rigidbody2D: {fileID: 1222618351}
 --- !u!50 &1222618351 stripped
 Rigidbody2D:
