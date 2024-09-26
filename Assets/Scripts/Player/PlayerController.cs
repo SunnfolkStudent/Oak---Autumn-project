@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private InputActions _input;
-    public float moveSpeed = 5f;
+    public float walkSpeed = 5f;
+    public float sprintSpeed = 10f;
 
     public Rigidbody2D _rigidbody2D;
     
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody2D.linearVelocity = _input.Movement * moveSpeed;
+        _rigidbody2D.linearVelocity = _input.Movement * walkSpeed;
     }
     
     void Update()
