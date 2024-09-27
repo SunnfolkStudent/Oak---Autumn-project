@@ -6,11 +6,13 @@ public class InputActions : MonoBehaviour
 
     public Vector2 Movement;
     public bool interact;
+    public bool sprint; //vet ikke om dette burde være bool. eller noe annet. spør om hjelp.
 
     private void Update()
     {
         Movement = _inputSystem.Player.Move.ReadValue<Vector2>();
         interact = _inputSystem.Player.Interact.WasPressedThisFrame();
+        sprint = _inputSystem.Player.Sprint.WasPressedThisFrame();
     }
 
     private void Awake() { _inputSystem = new InputSystem_Actions(); }
