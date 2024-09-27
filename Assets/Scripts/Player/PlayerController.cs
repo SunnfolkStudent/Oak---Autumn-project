@@ -1,13 +1,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour
 {
     public EventManager eventManager;
-    
+
     //movement variables
     private InputActions _input;
+    public Rigidbody2D _rigidbody2D;
     public float walkSpeed = 4f;
     public float sprintSpeed = 8f;
     public float currentSpeed;
@@ -21,17 +23,10 @@ public class PlayerController : MonoBehaviour
 
     //UI variables
     public GameObject popUp;
-    
+
     //interaction variables
     public bool playerCanInteractSpaceShuttle = false; //må jo være en bedre måte å gjøre dette på tenkjar eg
-    
-    /*public bool playerCanActivateTerminal = false;
-    public int terminalsActivated = 0;
-    public GameObject currentTerminal;
-    private GameObject[] terminals;*/
 
-
-    public Rigidbody2D _rigidbody2D;
 
     void Start()
     {
@@ -45,10 +40,8 @@ public class PlayerController : MonoBehaviour
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     private void FixedUpdate()
@@ -83,11 +76,8 @@ public class PlayerController : MonoBehaviour
     //interactions
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Terminal"))
+        if (other.CompareTag("Terminal")) //change to check for interactables layer instead of tag
         {
-            //playerCanActivateTerminal = true;
-            //currentTerminal = other.gameObject;
-            
             //activating and moving pop-up
             float xAxis = other.transform.position.x;
             float yAxis = other.transform.position.y;
@@ -98,9 +88,10 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("SpaceShuttle"))
         {
             playerCanInteractSpaceShuttle = true;
-            popUp.SetActive(true);float xAxis = other.transform.position.x;
+            popUp.SetActive(true);
+            float xAxis = other.transform.position.x;
             float yAxis = other.transform.position.y;
-            popUp.transform.position = new Vector2(xAxis, yAxis + 1);
+            popUp.transform.position = new Vector2(xAxis, yAxis + 1); //maybe make popup its own function
             popUp.SetActive(true);
         }
     }
@@ -109,38 +100,20 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Terminal"))
         {
-            //playerCanActivateTerminal = false;
             popUp.SetActive(false);
         }
         else if (other.CompareTag("SpaceShuttle"))
         {
-            playerCanInteractSpaceShuttle = false;
+            playerCanInteractSpaceShuttle = false; //this seems like ineffective code, look into other options
             popUp.SetActive(false);
         }
     }
 
     public void Update()
     {
-        //terminal system managing
-        /*
-        if (Input.GetKeyDown(KeyCode.E) && playerCanActivateTerminal) //TODO: change to fit input actions system
+        if (Input.GetKeyDown(KeyCode.E) && playerCanInteractSpaceShuttle) //TODO: change to fit input actions system
         {
-            if (terminalsActivated < 3)
-            {
-                //currentTerminal.GetComponent<Renderer>().material.color = new Color(0, 1, 0.5f);
-                terminals[0].GetComponent<Renderer>().material.color = Color.green;
-                terminalsActivated++;
-                print("terminals activated: " + terminalsActivated + " / 3");
-            }
-            else
-            {
-                print("ALL TERMINALS ACTIVATED");
-            }
-        }*/
-
-        if (Input.GetKeyDown(KeyCode.E) && playerCanInteractSpaceShuttle)
-        {
-            if (eventManager.allTerminalsActivated)
+            if (eventManager.AllTerminalsActive()) //access event manager script for the bool
             {
                 print("YOU ESCAPED!");
             }
@@ -148,7 +121,6 @@ public class PlayerController : MonoBehaviour
             {
                 print("Activate all the terminals first!");
             }
-            
         }
     }
 }

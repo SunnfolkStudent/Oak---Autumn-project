@@ -118,6 +118,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &194412675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 194412677}
+  - component: {fileID: 194412676}
+  m_Layer: 0
+  m_Name: EventManagerHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &194412676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194412675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d36bd76f5ea6f4781ae860ff090a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatedTerminals: 0
+  allTerminalsActivated: 0
+--- !u!4 &194412677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194412675}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.164673, y: 3.6084323, z: -10.365062}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &270905953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 671221025029830865, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
@@ -2383,6 +2429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 935775244}
     m_Modifications:
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: eventManager
+      value: 
+      objectReference: {fileID: 194412676}
     - target: {fileID: 3679668123616232, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
       propertyPath: m_Name
       value: Terminal_3
@@ -7659,6 +7709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd71950456f8e954f8ae37e49d43b210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventManager: {fileID: 194412676}
   walkSpeed: 4
   sprintSpeed: 8
   currentSpeed: 0
@@ -7669,9 +7720,6 @@ MonoBehaviour:
   staminaEmpty: 0
   popUp: {fileID: 1085509167}
   playerCanInteractSpaceShuttle: 0
-  playerCanActivateTerminal: 0
-  terminalsActivated: 0
-  currentTerminal: {fileID: 0}
   _rigidbody2D: {fileID: 1222618351}
 --- !u!50 &1222618351 stripped
 Rigidbody2D:
@@ -8042,6 +8090,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 935775244}
     m_Modifications:
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: eventManager
+      value: 
+      objectReference: {fileID: 194412676}
     - target: {fileID: 3679668123616232, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
       propertyPath: m_Name
       value: Terminal_2
@@ -8226,6 +8278,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 935775244}
     m_Modifications:
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: eventManager
+      value: 
+      objectReference: {fileID: 194412676}
     - target: {fileID: 3679668123616232, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
       propertyPath: m_Name
       value: Terminal_1
@@ -8400,7 +8456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 473901536863773651, guid: 32537e56ecf5c4f45a84c5e7c2620574, type: 3}
       propertyPath: orthographic size
-      value: 7.265625
+      value: 5.625
       objectReference: {fileID: 0}
     - target: {fileID: 4379984590232707383, guid: 32537e56ecf5c4f45a84c5e7c2620574, type: 3}
       propertyPath: m_Name
@@ -8425,3 +8481,4 @@ SceneRoots:
   - {fileID: 949970198}
   - {fileID: 1282105282}
   - {fileID: 935775244}
+  - {fileID: 194412677}
