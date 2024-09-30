@@ -2,11 +2,7 @@ using Mono.Cecil;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-<<<<<<< HEAD
 using FMOD.Studio;
-=======
-using UnityEngine.Rendering.Universal;
->>>>>>> main
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,31 +26,14 @@ public class PlayerController : MonoBehaviour
     public GameObject popUp;
 
     //interaction variables
-<<<<<<< HEAD
-    public bool playerCanInteractSpaceShuttle = false; //må jo være en bedre måte å gjøre dette på tenkjar eg
-    
-    /*public bool playerCanActivateTerminal = false;
-    public int terminalsActivated = 0;
-    public GameObject currentTerminal;
-    private GameObject[] terminals;*/
-
-    //audio
-    private EventInstance playerFootsteps;
-
-    public Rigidbody2D _rigidbody2D;
-=======
     public bool playerCanInteractSpaceShuttle; //må jo være en bedre måte å gjøre dette på tenkjar eg
     public bool playerCanHide;
->>>>>>> main
+    
+    private EventInstance playerFootsteps;
 
     void Start()
     {
         _input = GetComponent<InputActions>();
-<<<<<<< HEAD
-        //terminals = GameObject.FindGameObjectsWithTag("Terminal");
-        playerFootsteps = AudioManagerController.instance.CreatInstance(FMODEvents.instance.WalkingSound);
-=======
->>>>>>> main
     }
 
     //Stamina managing
@@ -98,7 +77,7 @@ public class PlayerController : MonoBehaviour
         
         UpdateSound();
     }
-    
+
     //interactions
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -120,7 +99,7 @@ public class PlayerController : MonoBehaviour
             popUp.SetActive(true);
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.GameObject().layer == 6)
@@ -149,8 +128,22 @@ public class PlayerController : MonoBehaviour
             HidingSpot_Interact();
         }
     }
+    public void SpaceShuttle_Interact()
+    {
+        if (eventManager.AllTerminalsActive())
+        {
+            print("YOU ESCAPED!");
+        }
+        else
+        {
+            print("Activate all the terminals first!");
+        }
+    }
 
-<<<<<<< HEAD
+    public void HidingSpot_Interact()
+    {
+        print("You hid!");
+    }
     private void UpdateSound()
     {
         // start footsteps event if the player has an x velocity is on the ground
@@ -170,22 +163,4 @@ public class PlayerController : MonoBehaviour
             playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
     }
-=======
-    public void SpaceShuttle_Interact()
-    {
-        if (eventManager.AllTerminalsActive())
-        {
-            print("YOU ESCAPED!");
-        }
-        else
-        {
-            print("Activate all the terminals first!");
-        }
-    }
-
-    public void HidingSpot_Interact()
-    {
-        print("You hid!");
-    }
->>>>>>> main
 }
