@@ -399,7 +399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &299192023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15281,6 +15281,28 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3456659036390663801, guid: 0958096ca9db12449b27d044c62ccb8b, type: 3}
   m_PrefabInstance: {fileID: 5460505799916168770}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1222618352
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222618345}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b3a7dc292375d684bbc181b6a78cd781, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1282105278
 GameObject:
   m_ObjectHideFlags: 0
@@ -15525,7 +15547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1695570711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16102,6 +16124,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 5314469937117175916, guid: 0958096ca9db12449b27d044c62ccb8b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.8125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16112,6 +16138,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3803828426580843134, guid: 0958096ca9db12449b27d044c62ccb8b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1222618348}
+    - targetCorrespondingSourceObject: {fileID: 3803828426580843134, guid: 0958096ca9db12449b27d044c62ccb8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1222618352}
   m_SourcePrefab: {fileID: 100100000, guid: 0958096ca9db12449b27d044c62ccb8b, type: 3}
 --- !u!1001 &5917761498457484403
 PrefabInstance:
