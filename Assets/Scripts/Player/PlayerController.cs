@@ -3,6 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,11 +31,13 @@ public class PlayerController : MonoBehaviour
     public bool playerCanInteractSpaceShuttle; //må jo være en bedre måte å gjøre dette på tenkjar eg
     public bool playerCanHide;
     
+    //audio
     private EventInstance playerFootsteps;
 
     void Start()
     {
         _input = GetComponent<InputActions>();
+        playerFootsteps = AudioManagerController.instance.CreatInstance(FMODEvents.instance.WalkingSound);
     }
 
     //Stamina managing
@@ -144,6 +148,7 @@ public class PlayerController : MonoBehaviour
     {
         print("You hid!");
     }
+    
     private void UpdateSound()
     {
         // start footsteps event if the player has an x velocity is on the ground

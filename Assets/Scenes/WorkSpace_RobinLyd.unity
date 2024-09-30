@@ -2790,7 +2790,7 @@ Transform:
   m_GameObject: {fileID: 1151179426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8091092, y: 3.8770788, z: -9.997827}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7756,6 +7756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 0}
+  _rigidbody2D: {fileID: 1222618351}
   walkSpeed: 4
   sprintSpeed: 8
   currentSpeed: 0
@@ -7766,7 +7767,7 @@ MonoBehaviour:
   staminaEmpty: 0
   popUp: {fileID: 1085509167}
   playerCanInteractSpaceShuttle: 0
-  _rigidbody2D: {fileID: 1222618351}
+  playerCanHide: 0
 --- !u!50 &1222618351 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3456659036390663801, guid: 0958096ca9db12449b27d044c62ccb8b, type: 3}
