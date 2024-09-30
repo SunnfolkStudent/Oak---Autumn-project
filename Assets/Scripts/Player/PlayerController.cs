@@ -1,6 +1,8 @@
+using Mono.Cecil;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMOD.Studio;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public GameObject currentTerminal;
     private GameObject[] terminals;*/
 
+    //audio
+    private EventInstance playerFootsteps;
 
     public Rigidbody2D _rigidbody2D;
 
@@ -37,6 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         _input = GetComponent<InputActions>();
         //terminals = GameObject.FindGameObjectsWithTag("Terminal");
+        playerFootsteps = AudioManagerController.instance.CreatInstance(FMODEvents.instance.WalkingSound);
     }
 
     bool TestIfSprinting()
@@ -78,6 +83,8 @@ public class PlayerController : MonoBehaviour
         }
 
         _rigidbody2D.linearVelocity = _input.Movement * currentSpeed;
+        
+        UpdateSound();
     }
 
     //interactions
@@ -149,6 +156,26 @@ public class PlayerController : MonoBehaviour
                 print("Activate all the terminals first!");
             }
             
+        }
+    }
+
+    private void UpdateSound()
+    {
+        // start footsteps event if the player has an x velocity is on the ground
+        if (_rigidbody2D.linearVelocity.x != 0 || _rigidbody2D.linearVelocity.y != 0)
+        {
+            //get the playback state
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                playerFootsteps.start();
+            }
+        }
+        //otherwis, stop the footsteps event
+        else
+        {
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
     }
 }
