@@ -36,7 +36,6 @@ public class TerminalController : MonoBehaviour
             terminalIsActivated = true;
             eventManager.activatedTerminals++;
             print(eventManager.activatedTerminals + " / 3 terminals activated.");
-            //_activatedTerminals++;
         }
     }
 

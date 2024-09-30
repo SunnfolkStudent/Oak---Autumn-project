@@ -25,28 +25,28 @@ public class PlayerController : MonoBehaviour
     public GameObject popUp;
 
     //interaction variables
-    public bool playerCanInteractSpaceShuttle = false; //må jo være en bedre måte å gjøre dette på tenkjar eg
-
+    public bool playerCanInteractSpaceShuttle; //må jo være en bedre måte å gjøre dette på tenkjar eg
+    public bool playerCanHide;
 
     void Start()
     {
         _input = GetComponent<InputActions>();
-        //terminals = GameObject.FindGameObjectsWithTag("Terminal");
     }
 
+    //Stamina managing
     bool TestIfSprinting()
     {
-        if (Input.GetKey(KeyCode.LeftShift)) //TODO: change to input actions system 
+        if (_input.sprint)
         {
             return true;
         }
 
         return false;
     }
+    
 
     private void FixedUpdate()
     {
-        //stamina managing
         if (TestIfSprinting() && staminaEmpty == false)
         {
             currentSpeed = sprintSpeed;
@@ -72,55 +72,72 @@ public class PlayerController : MonoBehaviour
 
         _rigidbody2D.linearVelocity = _input.Movement * currentSpeed;
     }
-
+    
     //interactions
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Terminal")) //change to check for interactables layer instead of tag
+        if (other.GameObject().layer == 6) //sjekk om andre objekt er på interactables layer
         {
-            //activating and moving pop-up
+            if (other.CompareTag("SpaceShuttle"))
+            {
+                playerCanInteractSpaceShuttle = true;
+            }
+            else if (other.CompareTag("HidingSpot"))
+            {
+                playerCanHide = true;
+            }
+            
+            //aktiverer popup
             float xAxis = other.transform.position.x;
             float yAxis = other.transform.position.y;
             popUp.transform.position = new Vector2(xAxis, yAxis + 1);
             popUp.SetActive(true);
         }
-
-        else if (other.CompareTag("SpaceShuttle"))
-        {
-            playerCanInteractSpaceShuttle = true;
-            popUp.SetActive(true);
-            float xAxis = other.transform.position.x;
-            float yAxis = other.transform.position.y;
-            popUp.transform.position = new Vector2(xAxis, yAxis + 1); //maybe make popup its own function
-            popUp.SetActive(true);
-        }
     }
-
+    
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Terminal"))
+        if (other.GameObject().layer == 6)
         {
-            popUp.SetActive(false);
-        }
-        else if (other.CompareTag("SpaceShuttle"))
-        {
-            playerCanInteractSpaceShuttle = false; //this seems like ineffective code, look into other options
+            if (other.CompareTag("SpaceShuttle"))
+            {
+                playerCanInteractSpaceShuttle = false;
+            }
+
+            if (other.CompareTag("HidingSpot"))
+            {
+                playerCanHide = false;
+            }
             popUp.SetActive(false);
         }
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerCanInteractSpaceShuttle) //TODO: change to fit input actions system
+        if (_input.interact && playerCanInteractSpaceShuttle)
         {
-            if (eventManager.AllTerminalsActive()) //access event manager script for the bool
-            {
-                print("YOU ESCAPED!");
-            }
-            else
-            {
-                print("Activate all the terminals first!");
-            }
+            SpaceShuttle_Interact();
         }
+        else if (_input.interact && playerCanHide)
+        {
+            HidingSpot_Interact();
+        }
+    }
+
+    public void SpaceShuttle_Interact()
+    {
+        if (eventManager.AllTerminalsActive())
+        {
+            print("YOU ESCAPED!");
+        }
+        else
+        {
+            print("Activate all the terminals first!");
+        }
+    }
+
+    public void HidingSpot_Interact()
+    {
+        print("You hid!");
     }
 }

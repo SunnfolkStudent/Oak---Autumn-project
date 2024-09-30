@@ -222,3 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1eb2b5f0152aa48ae10a1b6c4853ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIsClose: 0
+  terminalIsActivated: 0
+  eventManager: {fileID: 0}
