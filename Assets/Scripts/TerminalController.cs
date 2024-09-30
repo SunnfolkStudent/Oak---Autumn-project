@@ -10,7 +10,6 @@ public class TerminalController : MonoBehaviour
     void Start()
     {
         _input = GetComponent<InputActions>();
-        eventManager.TestThing();
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,7 +34,8 @@ public class TerminalController : MonoBehaviour
         {
             GetComponent<Renderer>().material.color = Color.green;
             terminalIsActivated = true;
-            //_activatedTerminals++;
+            eventManager.activatedTerminals++;
+            print(eventManager.activatedTerminals + " / 3 terminals activated.");
         }
     }
 

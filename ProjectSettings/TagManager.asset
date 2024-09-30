@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Terminal
   - SpaceShuttle
+  - HidingSpot
   layers:
   - Default
   - TransparentFX

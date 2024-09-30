@@ -2,14 +2,19 @@ using Mono.Cecil;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+<<<<<<< HEAD
 using FMOD.Studio;
+=======
+using UnityEngine.Rendering.Universal;
+>>>>>>> main
 
 public class PlayerController : MonoBehaviour
 {
     public EventManager eventManager;
-    
+
     //movement variables
     private InputActions _input;
+    public Rigidbody2D _rigidbody2D;
     public float walkSpeed = 4f;
     public float sprintSpeed = 8f;
     public float currentSpeed;
@@ -23,8 +28,9 @@ public class PlayerController : MonoBehaviour
 
     //UI variables
     public GameObject popUp;
-    
+
     //interaction variables
+<<<<<<< HEAD
     public bool playerCanInteractSpaceShuttle = false; //må jo være en bedre måte å gjøre dette på tenkjar eg
     
     /*public bool playerCanActivateTerminal = false;
@@ -36,29 +42,35 @@ public class PlayerController : MonoBehaviour
     private EventInstance playerFootsteps;
 
     public Rigidbody2D _rigidbody2D;
+=======
+    public bool playerCanInteractSpaceShuttle; //må jo være en bedre måte å gjøre dette på tenkjar eg
+    public bool playerCanHide;
+>>>>>>> main
 
     void Start()
     {
         _input = GetComponent<InputActions>();
+<<<<<<< HEAD
         //terminals = GameObject.FindGameObjectsWithTag("Terminal");
         playerFootsteps = AudioManagerController.instance.CreatInstance(FMODEvents.instance.WalkingSound);
+=======
+>>>>>>> main
     }
 
+    //Stamina managing
     bool TestIfSprinting()
     {
-        if (Input.GetKey(KeyCode.LeftShift)) //TODO: change to input actions system 
+        if (_input.sprint)
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
+    
 
     private void FixedUpdate()
     {
-        //stamina managing
         if (TestIfSprinting() && staminaEmpty == false)
         {
             currentSpeed = sprintSpeed;
@@ -86,79 +98,59 @@ public class PlayerController : MonoBehaviour
         
         UpdateSound();
     }
-
+    
     //interactions
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Terminal"))
+        if (other.GameObject().layer == 6) //sjekk om andre objekt er på interactables layer
         {
-            //playerCanActivateTerminal = true;
-            //currentTerminal = other.gameObject;
+            if (other.CompareTag("SpaceShuttle"))
+            {
+                playerCanInteractSpaceShuttle = true;
+            }
+            else if (other.CompareTag("HidingSpot"))
+            {
+                playerCanHide = true;
+            }
             
-            //activating and moving pop-up
+            //aktiverer popup
             float xAxis = other.transform.position.x;
             float yAxis = other.transform.position.y;
             popUp.transform.position = new Vector2(xAxis, yAxis + 1);
             popUp.SetActive(true);
         }
-
-        else if (other.CompareTag("SpaceShuttle"))
-        {
-            playerCanInteractSpaceShuttle = true;
-            popUp.SetActive(true);float xAxis = other.transform.position.x;
-            float yAxis = other.transform.position.y;
-            popUp.transform.position = new Vector2(xAxis, yAxis + 1);
-            popUp.SetActive(true);
-        }
     }
-
+    
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Terminal"))
+        if (other.GameObject().layer == 6)
         {
-            //playerCanActivateTerminal = false;
-            popUp.SetActive(false);
-        }
-        else if (other.CompareTag("SpaceShuttle"))
-        {
-            playerCanInteractSpaceShuttle = false;
+            if (other.CompareTag("SpaceShuttle"))
+            {
+                playerCanInteractSpaceShuttle = false;
+            }
+
+            if (other.CompareTag("HidingSpot"))
+            {
+                playerCanHide = false;
+            }
             popUp.SetActive(false);
         }
     }
 
     public void Update()
     {
-        //terminal system managing
-        /*
-        if (Input.GetKeyDown(KeyCode.E) && playerCanActivateTerminal) //TODO: change to fit input actions system
+        if (_input.interact && playerCanInteractSpaceShuttle)
         {
-            if (terminalsActivated < 3)
-            {
-                //currentTerminal.GetComponent<Renderer>().material.color = new Color(0, 1, 0.5f);
-                terminals[0].GetComponent<Renderer>().material.color = Color.green;
-                terminalsActivated++;
-                print("terminals activated: " + terminalsActivated + " / 3");
-            }
-            else
-            {
-                print("ALL TERMINALS ACTIVATED");
-            }
-        }*/
-
-        if (Input.GetKeyDown(KeyCode.E) && playerCanInteractSpaceShuttle)
+            SpaceShuttle_Interact();
+        }
+        else if (_input.interact && playerCanHide)
         {
-            if (eventManager.allTerminalsActivated)
-            {
-                print("YOU ESCAPED!");
-            }
-            else
-            {
-                print("Activate all the terminals first!");
-            }
-            
+            HidingSpot_Interact();
         }
     }
 
+<<<<<<< HEAD
     private void UpdateSound()
     {
         // start footsteps event if the player has an x velocity is on the ground
@@ -178,4 +170,22 @@ public class PlayerController : MonoBehaviour
             playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
     }
+=======
+    public void SpaceShuttle_Interact()
+    {
+        if (eventManager.AllTerminalsActive())
+        {
+            print("YOU ESCAPED!");
+        }
+        else
+        {
+            print("Activate all the terminals first!");
+        }
+    }
+
+    public void HidingSpot_Interact()
+    {
+        print("You hid!");
+    }
+>>>>>>> main
 }
