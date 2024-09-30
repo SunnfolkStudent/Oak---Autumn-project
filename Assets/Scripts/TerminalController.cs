@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TerminalController : MonoBehaviour
 {
@@ -6,6 +7,9 @@ public class TerminalController : MonoBehaviour
     public bool playerIsClose;
     public bool terminalIsActivated = false;
     public EventManager eventManager;
+    public Sprite activatedTerminal_Sprite;
+
+    public Text terminalCounter;
     
     void Start()
     {
@@ -32,9 +36,11 @@ public class TerminalController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose && terminalIsActivated == false)
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            //GetComponent<Renderer>().material.color = Color.green;
+            GetComponent<SpriteRenderer>().sprite = activatedTerminal_Sprite;
             terminalIsActivated = true;
             eventManager.activatedTerminals++;
+            terminalCounter.text = (eventManager.activatedTerminals + " / 3 terminals activated.");
             print(eventManager.activatedTerminals + " / 3 terminals activated.");
         }
     }
