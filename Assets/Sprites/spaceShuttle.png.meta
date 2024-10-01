@@ -106,20 +106,20 @@ TextureImporter:
       name: spaceShuttle_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 2
-        width: 91
-        height: 136
+        x: 10
+        y: 3
+        width: 89
+        height: 134
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e333c862ed591e0e0800000000000000
-      internalID: -2242346358091795650
+      spriteID: 796c0ce47afe7234294c74577da95f9b
+      internalID: 942835425
       vertices: []
       indices: 
       edges: []
@@ -128,20 +128,20 @@ TextureImporter:
       name: spaceShuttle_1
       rect:
         serializedVersion: 2
-        x: 115
-        y: 2
-        width: 91
-        height: 136
+        x: 116
+        y: 3
+        width: 89
+        height: 134
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: da9ff557989ae3540800000000000000
-      internalID: 4989611845017926061
+      spriteID: e1d5f6096072ed941a091607bb0ea06b
+      internalID: -2087833194
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1afbf33ff6f9f6f4687eb8ea0d742b42
     internalID: 0
     vertices: []
     indices: 
@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spaceShuttle_0: 942835425
+      spaceShuttle_1: -2087833194
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -8,11 +8,21 @@ public class InputActions : MonoBehaviour
     public bool interact;
     public bool sprint;
 
-    private void Update()
+    public void Update()
     {
         Movement = _inputSystem.Player.Move.ReadValue<Vector2>();
         interact = _inputSystem.Player.Interact.WasPressedThisFrame();
         sprint = _inputSystem.Player.Sprint.IsPressed();
+    }
+
+    public bool Interact()
+    {
+        if (_inputSystem.Player.Interact.WasPressedThisFrame())
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void Awake() { _inputSystem = new InputSystem_Actions(); }

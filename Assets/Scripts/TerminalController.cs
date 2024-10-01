@@ -3,24 +3,34 @@ using UnityEngine.UI;
 
 public class TerminalController : MonoBehaviour
 {
-    private InputActions _input;
-    public bool playerIsClose;
-    public bool terminalIsActivated = false;
     public EventManager eventManager;
-    public Sprite activatedTerminal_Sprite;
+    /*
+    public InputActions inputActions;
+    public PlayerController playerController;
+    */
+    
+    public bool playerIsClose;
+    public bool terminalIsActivated;
+    public Sprite activatedTerminalSprite;
+
+    public GameObject spaceShuttle;
+    public Sprite spaceShuttleActivatedSprite;
 
     public Text terminalCounter;
-
+    
+    /*
     void Start()
     {
-        _input = GetComponent<InputActions>();
+        inputActions = GetComponent<InputActions>();
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    */
+    
+    private void OnTriggerEnter2D(Collider2D other)//other.transform.position
     {
         if (other.CompareTag("Player"))
         {
             playerIsClose = true;
+            print(other.transform.position);
         }
     }
 
@@ -34,15 +44,17 @@ public class TerminalController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose && terminalIsActivated == false)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3)) 
+            && playerIsClose && terminalIsActivated == false)
         {
-            GetComponent<SpriteRenderer>().sprite = activatedTerminal_Sprite;
+            GetComponent<SpriteRenderer>().sprite = activatedTerminalSprite;
             terminalIsActivated = true;
             eventManager.activatedTerminals++;
 
             if (eventManager.AllTerminalsActive())
             {
                 terminalCounter.text = ("ESCAPE");
+                spaceShuttle.GetComponent<SpriteRenderer>().sprite = spaceShuttleActivatedSprite;
             }
             else
             {
