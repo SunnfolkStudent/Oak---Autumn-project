@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
 
         _rigidbody2D.linearVelocity = _input.Movement * currentSpeed;
         
-        UpdateSound();
         if (_rigidbody2D.linearVelocity != Vector2.zero)
         {
             _animator.SetFloat(_lastHorizontal, _rigidbody2D.linearVelocity.x);
@@ -197,21 +196,6 @@ public class PlayerController : MonoBehaviour
     
     private void UpdateSound()
     {
-        // start footsteps event if the player has an x velocity is on the ground
-        if (_rigidbody2D.linearVelocity.x != 0 || _rigidbody2D.linearVelocity.y != 0)
-        {
-            //get the playback state
-            PLAYBACK_STATE playbackState;
-            playerFootsteps.getPlaybackState(out playbackState);
-            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-            {
-                playerFootsteps.start();
-            }
-        }
-        //otherwis, stop the footsteps event
-        else
-        {
-            playerFootsteps.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
+        RuntimeManager.PlayOneShot("event:/sfx_playerWalk");
     }
 }
