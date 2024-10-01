@@ -35,10 +35,18 @@ public class PlayerController : MonoBehaviour
 
     //interaction variables
     public bool playerCanInteractSpaceShuttle; //må jo være en bedre måte å gjøre dette på tenkjar eg
+<<<<<<< HEAD
     public bool playerCanHide;
     
     //audio
     private EventInstance playerFootsteps;
+=======
+    public bool playerCanInteractHidingSpot;
+    public bool playerCanInteractTerminal;
+
+    public bool terminalInteractedWith;
+    
+>>>>>>> main
 
     private void Awake()
     {
@@ -116,7 +124,11 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.CompareTag("HidingSpot"))
             {
-                playerCanHide = true;
+                playerCanInteractHidingSpot = true;
+            }
+            else if (other.CompareTag("Terminal"))
+            {
+                playerCanInteractTerminal = true;
             }
             
             //aktiverer popup
@@ -135,11 +147,15 @@ public class PlayerController : MonoBehaviour
             {
                 playerCanInteractSpaceShuttle = false;
             }
-
-            if (other.CompareTag("HidingSpot"))
+            else if (other.CompareTag("HidingSpot"))
             {
-                playerCanHide = false;
+                playerCanInteractHidingSpot = false;
             }
+            else if (other.CompareTag("Terminal"))
+            {
+                playerCanInteractTerminal = false;
+            }
+            
             popUp.SetActive(false);
         }
     }
@@ -148,14 +164,23 @@ public class PlayerController : MonoBehaviour
     {
         if (_input.interact && playerCanInteractSpaceShuttle)
         {
-            SpaceShuttle_Interact();
+            SpaceShuttleInteract();
         }
-        else if (_input.interact && playerCanHide)
+        else if (_input.interact && playerCanInteractHidingSpot)
         {
-            HidingSpot_Interact();
+            HidingSpotInteract();
+        }
+        else if (_input.interact && playerCanInteractTerminal)
+        {
+            terminalInteractedWith = true;
         }
     }
+<<<<<<< HEAD
     public void SpaceShuttle_Interact()
+=======
+
+    public void SpaceShuttleInteract()
+>>>>>>> main
     {
         if (eventManager.AllTerminalsActive())
         {
@@ -167,7 +192,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void HidingSpot_Interact()
+    public void HidingSpotInteract()
     {
         print("You hid!");
     }
