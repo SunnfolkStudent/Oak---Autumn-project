@@ -189,6 +189,7 @@ MonoBehaviour:
   staminaEmpty: 0
   popUp: {fileID: 0}
   playerCanInteractSpaceShuttle: 0
+  playerCanHide: 0
   playerCanInteractHidingSpot: 0
   playerCanInteractTerminal: 0
   terminalInteractedWith: 0
