@@ -2387,6 +2387,14 @@ PrefabInstance:
       propertyPath: eventManager
       value: 
       objectReference: {fileID: 1138871241}
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: spaceShuttle
+      value: 
+      objectReference: {fileID: 1282105278}
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: spaceShuttleActivatedSprite
+      value: 
+      objectReference: {fileID: -2242346358091795650, guid: 38e1646ab38de3e4db0e8a62cbc7c290, type: 3}
     - target: {fileID: 3679668123616232, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
       propertyPath: m_Name
       value: Terminal_3
@@ -7824,6 +7832,9 @@ MonoBehaviour:
   popUp: {fileID: 1085509167}
   playerCanInteractSpaceShuttle: 0
   playerCanHide: 0
+  playerCanInteractHidingSpot: 0
+  playerCanInteractTerminal: 0
+  terminalInteractedWith: 0
 --- !u!50 &1222618351 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3456659036390663801, guid: 0958096ca9db12449b27d044c62ccb8b, type: 3}
@@ -8197,6 +8208,14 @@ PrefabInstance:
       propertyPath: eventManager
       value: 
       objectReference: {fileID: 1138871241}
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: spaceShuttle
+      value: 
+      objectReference: {fileID: 1282105278}
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: spaceShuttleActivatedSprite
+      value: 
+      objectReference: {fileID: -2242346358091795650, guid: 38e1646ab38de3e4db0e8a62cbc7c290, type: 3}
     - target: {fileID: 3679668123616232, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
       propertyPath: m_Name
       value: Terminal_2
@@ -8385,6 +8404,14 @@ PrefabInstance:
       propertyPath: eventManager
       value: 
       objectReference: {fileID: 1138871241}
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: spaceShuttle
+      value: 
+      objectReference: {fileID: 1282105278}
+    - target: {fileID: -6759616995904583343, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
+      propertyPath: spaceShuttleActivatedSprite
+      value: 
+      objectReference: {fileID: -2242346358091795650, guid: 38e1646ab38de3e4db0e8a62cbc7c290, type: 3}
     - target: {fileID: 3679668123616232, guid: c9a0db3c3faf5bc438569354399f442f, type: 3}
       propertyPath: m_Name
       value: Terminal_1

@@ -35,19 +35,15 @@ public class PlayerController : MonoBehaviour
 
     //interaction variables
     public bool playerCanInteractSpaceShuttle; //må jo være en bedre måte å gjøre dette på tenkjar eg
-<<<<<<< HEAD
     public bool playerCanHide;
     
     //audio
     private EventInstance playerFootsteps;
-=======
     public bool playerCanInteractHidingSpot;
     public bool playerCanInteractTerminal;
 
     public bool terminalInteractedWith;
     
->>>>>>> main
-
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -175,12 +171,13 @@ public class PlayerController : MonoBehaviour
             terminalInteractedWith = true;
         }
     }
-<<<<<<< HEAD
+
     public void SpaceShuttle_Interact()
-=======
+    {
+        
+    }
 
     public void SpaceShuttleInteract()
->>>>>>> main
     {
         if (eventManager.AllTerminalsActive())
         {

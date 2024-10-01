@@ -132,7 +132,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 796c0ce47afe7234294c74577da95f9b
-      internalID: 942835425
+      internalID: -2242346358091795650
       vertices: []
       indices: 
       edges: []
@@ -154,7 +154,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e1d5f6096072ed941a091607bb0ea06b
-      internalID: -2087833194
+      internalID: 4989611845017926061
       vertices: []
       indices: 
       edges: []
@@ -173,13 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-<<<<<<< HEAD
       spaceShuttle_0: -2242346358091795650
       spaceShuttle_1: 4989611845017926061
-=======
-      spaceShuttle_0: 942835425
-      spaceShuttle_1: -2087833194
->>>>>>> main
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
