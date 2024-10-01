@@ -30,7 +30,6 @@ public class TerminalController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsClose = true;
-            print(other.transform.position);
         }
     }
 

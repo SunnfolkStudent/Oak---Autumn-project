@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1101675905533460919}
   - component: {fileID: 1789523353790898215}
   - component: {fileID: -6759616995904583343}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Terminal
   m_TagString: Terminal
   m_Icon: {fileID: 0}
