@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class TerminalController : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class TerminalController : MonoBehaviour
             terminalIsActivated = true;
             eventManager.activatedTerminals++;
             print(eventManager.activatedTerminals + " / 3 terminals activated.");
+            AudioManagerController.instance.PlayOneShot(FMODEvents.instance.TerminalSound, this.transform.position);
         }
     }
 

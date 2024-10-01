@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 
 public class AudioManagerController : MonoBehaviour
 {
+    private List<EventInstance> eventInstances;
+    
     public static AudioManagerController instance { get; private set; }
 
     private void Awake()
@@ -13,6 +16,8 @@ public class AudioManagerController : MonoBehaviour
             Debug.LogWarning("More than one AudioManagerController found");
         }
         instance = this;
+        
+        eventInstances = new List<EventInstance>();
     }
 
     public void PlayOneShot(EventReference sound, Vector3 position)
@@ -23,6 +28,16 @@ public class AudioManagerController : MonoBehaviour
     public EventInstance CreatInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+        eventInstances.Add(eventInstance);
         return eventInstance;
+    }
+
+    private void CleanUp()
+    {
+        foreach (EventInstance eventInstance in eventInstances)
+        {
+            eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            eventInstance.release();
+        }
     }
 }

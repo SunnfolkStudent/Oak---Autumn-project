@@ -1,10 +1,8 @@
-using Mono.Cecil;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FMOD.Studio;
 using FMODUnity;
-using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class PlayerController : MonoBehaviour
 {
@@ -165,7 +163,7 @@ public class PlayerController : MonoBehaviour
         //otherwis, stop the footsteps event
         else
         {
-            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+            playerFootsteps.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 }
