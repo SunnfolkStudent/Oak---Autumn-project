@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class TerminalController : MonoBehaviour
@@ -12,18 +13,19 @@ public class TerminalController : MonoBehaviour
     public bool playerIsClose;
     public bool terminalIsActivated;
     public Sprite activatedTerminalSprite;
+    public Light2D terminalLight;
 
     public GameObject spaceShuttle;
     public Sprite spaceShuttleActivatedSprite;
 
     public Text terminalCounter;
     
-    /*
+    
     void Start()
     {
-        inputActions = GetComponent<InputActions>();
+        terminalLight = GetComponentInChildren<Light2D>();
     }
-    */
+    
     
     private void OnTriggerEnter2D(Collider2D other)//other.transform.position
     {
@@ -47,6 +49,8 @@ public class TerminalController : MonoBehaviour
             && playerIsClose && terminalIsActivated == false)
         {
             GetComponent<SpriteRenderer>().sprite = activatedTerminalSprite;
+            terminalLight.color = Color.cyan;
+            
             terminalIsActivated = true;
             eventManager.activatedTerminals++;
 

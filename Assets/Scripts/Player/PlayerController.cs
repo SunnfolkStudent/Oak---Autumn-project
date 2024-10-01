@@ -2,6 +2,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,14 +13,14 @@ public class PlayerController : MonoBehaviour
 
     //movement variables
     private InputActions _input;
-    public Rigidbody2D _rigidbody2D;
+    private Rigidbody2D _rigidbody2D;
     public float walkSpeed = 4f;
     public float sprintSpeed = 8f;
     public float currentSpeed;
-    
+
     //animation variables
     private Animator _animator;
-    
+
     private const string _horizontal = "Horizontal";
     private const string _vertical = "Vertical";
     private const string _lastHorizontal = "LastHorizontal";
@@ -37,16 +41,22 @@ public class PlayerController : MonoBehaviour
     public bool playerCanInteractHidingSpot;
     public bool playerCanInteractTerminal;
 
+    public GameObject hidingSpot;
+    public bool playerIsHiding;
+
     public bool terminalInteractedWith;
-    
+
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
+
     void Start()
     {
         _input = GetComponent<InputActions>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+
         //LayerMask interactablesLayer = LayerMask.GetMask("Interactables");
     }
 
@@ -60,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
-    
+
 
     private void FixedUpdate()
     {
@@ -86,10 +96,10 @@ public class PlayerController : MonoBehaviour
                 staminaEmpty = false;
             }
         }
-        
+
         //movement
-        _rigidbody2D.linearVelocity = _input.Movement * currentSpeed; 
-        
+        _rigidbody2D.linearVelocity = _input.Movement * currentSpeed;
+
         //animation
         _animator.SetFloat(_horizontal, _rigidbody2D.linearVelocity.x);
         _animator.SetFloat(_vertical, _rigidbody2D.linearVelocity.y);
@@ -99,9 +109,8 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat(_lastHorizontal, _rigidbody2D.linearVelocity.x);
             _animator.SetFloat(_lastVertical, _rigidbody2D.linearVelocity.y);
         }
-        
     }
-    
+
     //interactions
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -119,7 +128,7 @@ public class PlayerController : MonoBehaviour
             {
                 playerCanInteractTerminal = true;
             }
-            
+
             //aktiverer popup
             float xAxis = other.transform.position.x;
             float yAxis = other.transform.position.y;
@@ -127,7 +136,7 @@ public class PlayerController : MonoBehaviour
             popUp.SetActive(true);
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.GameObject().layer == 11)
@@ -135,6 +144,7 @@ public class PlayerController : MonoBehaviour
             if (other.CompareTag("SpaceShuttle"))
             {
                 playerCanInteractSpaceShuttle = false;
+                
             }
             else if (other.CompareTag("HidingSpot"))
             {
@@ -144,7 +154,7 @@ public class PlayerController : MonoBehaviour
             {
                 playerCanInteractTerminal = false;
             }
-            
+
             popUp.SetActive(false);
         }
     }
@@ -165,20 +175,90 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //dialogue
+
+    public GameObject dialoguePanel;
+    public TextMeshProUGUI dialogueText;
+    public string[] dialogue;
+    private int index;
+    public float wordSpeed;
+    public GameObject contButton;
+
+    IEnumerator Typing()
+    {
+        foreach (char letter in dialogue[index].ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(wordSpeed);
+        }
+    }
+
+    public void NextLine()
+    {
+        contButton.SetActive(false);
+        if (index < dialogue.Length - 1)
+        {
+            index++;
+            dialogueText.text = "";
+            StartCoroutine(Typing());
+        }
+        else
+        {
+            ZeroText();
+        }
+    }
+
+
     public void SpaceShuttleInteract()
     {
         if (eventManager.AllTerminalsActive())
         {
             print("YOU ESCAPED!");
         }
+
         else
         {
             print("Activate all the terminals first!");
+            if (dialoguePanel.activeInHierarchy)
+            {
+                ZeroText();
+            }
+            else
+            {
+                dialoguePanel.SetActive(true);
+                StartCoroutine(Typing());
+            }
+
+            if (dialogueText.text == dialogue[index])
+            {
+                contButton.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    NextLine();
+                }
+            }
         }
     }
 
+    public void ZeroText()
+    {
+        dialogueText.text = "";
+        index = 0;
+        dialoguePanel.SetActive(false);
+    }
+
+
+    public Vector3 entryLocation;
+
     public void HidingSpotInteract()
     {
-        print("You hid!");
+        if (!playerIsHiding)
+        {
+            entryLocation = transform.position;
+            transform.position = hidingSpot.transform.position;
+            print("you are now hidden.");
+            gameObject.SetActive(false);
+            playerIsHiding = true;
+        }
     }
 }

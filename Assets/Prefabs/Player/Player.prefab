@@ -132,7 +132,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2056
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -191,7 +191,10 @@ MonoBehaviour:
   playerCanInteractSpaceShuttle: 0
   playerCanInteractHidingSpot: 0
   playerCanInteractTerminal: 0
+  hidingSpot: {fileID: 0}
+  playerIsHiding: 0
   terminalInteractedWith: 0
+  entryLocation: {x: 0, y: 0, z: 0}
 --- !u!114 &1351574138662818040
 MonoBehaviour:
   m_ObjectHideFlags: 0
