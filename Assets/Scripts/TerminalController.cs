@@ -40,10 +40,8 @@ public class TerminalController : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = activatedTerminal_Sprite;
             terminalIsActivated = true;
             eventManager.activatedTerminals++;
-<<<<<<< HEAD
             print(eventManager.activatedTerminals + " / 3 terminals activated.");
             AudioManagerController.instance.PlayOneShot(FMODEvents.instance.TerminalSound, this.transform.position);
-=======
 
             if (eventManager.AllTerminalsActive())
             {
@@ -53,7 +51,6 @@ public class TerminalController : MonoBehaviour
             {
                 terminalCounter.text = (eventManager.activatedTerminals + " / 3 terminals activated.");
             }
->>>>>>> main
         }
     }
 }

@@ -94,18 +94,15 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat(_horizontal, _rigidbody2D.linearVelocity.x);
         _animator.SetFloat(_vertical, _rigidbody2D.linearVelocity.y);
 
-<<<<<<< HEAD
         _rigidbody2D.linearVelocity = _input.Movement * currentSpeed;
         
         UpdateSound();
-=======
         if (_rigidbody2D.linearVelocity != Vector2.zero)
         {
             _animator.SetFloat(_lastHorizontal, _rigidbody2D.linearVelocity.x);
             _animator.SetFloat(_lastVertical, _rigidbody2D.linearVelocity.y);
         }
         
->>>>>>> main
     }
 
     //interactions
