@@ -14,6 +14,14 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 4f;
     public float sprintSpeed = 8f;
     public float currentSpeed;
+    
+    //animation variables
+    private Animator _animator;
+    
+    private const string _horizontal = "Horizontal";
+    private const string _vertical = "Vertical";
+    private const string _lastHorizontal = "LastHorizontal";
+    private const string _lastVertical = "LastVertical";
 
     //stamina variables
     public float stamina = 3f;
@@ -32,13 +40,17 @@ public class PlayerController : MonoBehaviour
     //audio
     private EventInstance playerFootsteps;
 
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
     void Start()
     {
         _input = GetComponent<InputActions>();
         playerFootsteps = AudioManagerController.instance.CreatInstance(FMODEvents.instance.WalkingSound);
     }
 
-    //Stamina managing
+    //Movement (incl. stamina/sprinting and walking animation)
     bool TestIfSprinting()
     {
         if (_input.sprint)
@@ -74,10 +86,26 @@ public class PlayerController : MonoBehaviour
                 staminaEmpty = false;
             }
         }
+        
+        //movement
+        _rigidbody2D.linearVelocity = _input.Movement * currentSpeed; 
+        
+        //animation
+        _animator.SetFloat(_horizontal, _rigidbody2D.linearVelocity.x);
+        _animator.SetFloat(_vertical, _rigidbody2D.linearVelocity.y);
 
+<<<<<<< HEAD
         _rigidbody2D.linearVelocity = _input.Movement * currentSpeed;
         
         UpdateSound();
+=======
+        if (_rigidbody2D.linearVelocity != Vector2.zero)
+        {
+            _animator.SetFloat(_lastHorizontal, _rigidbody2D.linearVelocity.x);
+            _animator.SetFloat(_lastVertical, _rigidbody2D.linearVelocity.y);
+        }
+        
+>>>>>>> main
     }
 
     //interactions

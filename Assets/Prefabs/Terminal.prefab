@@ -225,3 +225,5 @@ MonoBehaviour:
   playerIsClose: 0
   terminalIsActivated: 0
   eventManager: {fileID: 0}
+  activatedTerminal_Sprite: {fileID: 0}
+  terminalCounter: {fileID: 0}
