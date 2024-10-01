@@ -51,11 +51,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _input = GetComponent<InputActions>();
-<<<<<<< HEAD
         playerFootsteps = AudioManagerController.instance.CreateInstance(FMODEvents.instance.WalkingSound);
-=======
         //LayerMask interactablesLayer = LayerMask.GetMask("Interactables");
->>>>>>> main
     }
 
     //Movement (incl. stamina/sprinting and walking animation)
