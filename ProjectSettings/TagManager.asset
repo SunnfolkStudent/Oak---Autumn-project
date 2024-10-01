@@ -14,12 +14,12 @@ TagManager:
   - Walls
   - Water
   - UI
-  - Interactable
+  - 
   - 
   - 
   - Player
   - EnemyReach
-  - 
+  - Interactables
   - 
   - 
   - 

@@ -51,7 +51,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _input = GetComponent<InputActions>();
+<<<<<<< HEAD
         playerFootsteps = AudioManagerController.instance.CreateInstance(FMODEvents.instance.WalkingSound);
+=======
+        //LayerMask interactablesLayer = LayerMask.GetMask("Interactables");
+>>>>>>> main
     }
 
     //Movement (incl. stamina/sprinting and walking animation)
@@ -112,7 +116,7 @@ public class PlayerController : MonoBehaviour
     //interactions
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GameObject().layer == 6) //sjekk om andre objekt er på interactables layer
+        if (other.GameObject().layer == 11) //sjekk om andre objekt er på interactables layer
         {
             if (other.CompareTag("SpaceShuttle"))
             {
@@ -137,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GameObject().layer == 6)
+        if (other.GameObject().layer == 11)
         {
             if (other.CompareTag("SpaceShuttle"))
             {
