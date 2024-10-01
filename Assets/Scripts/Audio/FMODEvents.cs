@@ -3,6 +3,9 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
+    [field: Header("Ambiance")]
+    [field: SerializeField] public EventReference ambiance { get; private set; }
+    
     [field: Header("WalkingSound")]
     [field: SerializeField] public EventReference WalkingSound { get; private set; }
     
