@@ -1,18 +1,19 @@
 using System;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Collections;
 
 
 public class EnemyAI : MonoBehaviour
 {
-
-    public Transform[] patrolPoints;
     
-  public Transform target;
+    public Transform target;
 
-    public float speed = 200f;
+    public float speed = 400f;
     
-    public bool _canChase = false;
+    public bool canChase = false;
 
     public float nextWaypointDistance = 3f;
 
@@ -21,7 +22,7 @@ public class EnemyAI : MonoBehaviour
     bool reachedEndOfPath = false;
 
     Seeker seeker;
-    Rigidbody2D rb;
+    static Rigidbody2D rb;
 
     void Start()
     {
@@ -29,19 +30,18 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         
         InvokeRepeating("UpdatePath", 0f, .5f);
-        
     }
-
+    
     void UpdatePath()
     {
-        /*if (!_canChase)
+        /*if (!canChase)
         {
             if (seeker.IsDone())
             {
                 seeker.StartPath(rb.position, patrolPoints[0].position, OnPathComplete);
             }
         }*/
-        if (_canChase)
+        if (canChase)
         {
             if (seeker.IsDone())
             {
@@ -89,7 +89,7 @@ public class EnemyAI : MonoBehaviour
         {
             currentWaypoint++;
         }
-        
-        
     }
 }
+
+
