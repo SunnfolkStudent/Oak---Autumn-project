@@ -165,13 +165,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7816964751341509564}
   - component: {fileID: 1482129562341091681}
-  - component: {fileID: 5566041674175551305}
-  - component: {fileID: 5701222868257902223}
-  - component: {fileID: 1340496144613116885}
   - component: {fileID: 3006914432127008845}
   - component: {fileID: 211527029432870571}
   - component: {fileID: 5787683180835783980}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,61 +220,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &5566041674175551305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459710338068406970}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89d36ab0771168a4f8f866913d8e029c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 400
-  canChase: 1
-  nextWaypointDistance: 3
---- !u!114 &5701222868257902223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459710338068406970}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af016ea942607464db6f2ad700757b22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPoint: 0
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  patrolSpeed: 5
---- !u!114 &1340496144613116885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459710338068406970}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6efe7f9d86ab0f4a86adf27cc6e6dce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  currentPoint: 1
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  patrolSpeed: 400
-  nextWaypointDistance: 1
-  currentWaypoint: 0
 --- !u!114 &3006914432127008845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,16 +233,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  canChase: 0
-  speed: 400
-  patrolSpeed: 400
   currentPoint: 0
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  canChase: 0
+  patrolSpeed: 400
   nextWaypointDistance: 1
+  state: 0
   currentWaypoint: 0
 --- !u!58 &211527029432870571
 CircleCollider2D:

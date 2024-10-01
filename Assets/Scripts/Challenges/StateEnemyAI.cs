@@ -1,31 +1,45 @@
+using System.Collections;
 using UnityEngine;
 using Pathfinding;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class StateEnemyAI : MonoBehaviour
 {
-    // Creating enum with both enemy states; Patrol and Chase
-    public enum State
+    // Creating enum with both enemy states; Patrol and Chase'
+    private enum State
     {
         Patrol,
         Chase
     }
+
+    private enum EndOfPath
+    {
+        NotLooking,
+        Looking,
+        
+    }
     
-    // Player target 
+    // Public usual variables
     public Transform target;
+    public int currentPoint;
+    public Transform[] patrolPoints;
+    private Transform playerTransform;
     
     // Variable that enables the Chase switchcase to function only if true
     public bool canChase;
     
     // Speed for Chase switchcase
-    public float speed = 400f;
+    private float speed = 400f;
+
+    // CoRoutine
+    private bool _LFP = false;
+    private int coRoutineCounter = 0;
     
     // Speed for Patrol switchcase
     public float patrolSpeed;
     
-    // Used in both pathfinding cases, defines what's the next point in the path to objective
-    public int currentPoint;
-    // Array of points the enemy patrols in Patrol switchcase
-    public Transform[] patrolPoints;
+    
     
     // Boolean used to determine what way the enemy is patrolling through the array
     bool isMovingForwards = true;
@@ -35,7 +49,10 @@ public class StateEnemyAI : MonoBehaviour
     private float maxRange = 5f;
     
     // Using State functionality, see the enum above
+    
+    [SerializeField]
     private State state;
+    private EndOfPath endOfPath;
 
     // Using A*'s built-in path mechanic
     private Path path;
@@ -59,6 +76,8 @@ public class StateEnemyAI : MonoBehaviour
         // Getting components
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        
+        LayerMask mask = LayerMask.GetMask("Player");
         
         // Setting destination to first patrolpoint in array (since currentPoint is set to 0 by default)
         Vector3 patrolDestination = patrolPoints[currentPoint].position;
@@ -121,7 +140,6 @@ public class StateEnemyAI : MonoBehaviour
                 }
                 break;
         }
-            
     }
 
     void OnPathComplete(Path p)
@@ -135,10 +153,10 @@ public class StateEnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        LayerMask mask = LayerMask.GetMask("Player");
         switch (state)
         {
             default:
+                // Part of the code that controls patrolling, refreshes 50 times a second
                 case State.Patrol:
                     if (path == null)
                         return;
@@ -165,16 +183,26 @@ public class StateEnemyAI : MonoBehaviour
                     }
 
                     break;
+            
+            // Part of the code that controls chasing the player, refreshes 50 times a second
             case State.Chase: 
                 if (path == null)
-                {
                     return;
-                }
 
                 if (currentWaypoint >= path.vectorPath.Count)
                 {
-                    reachedEndOfPath = true;
-                    return;
+                    if (!_LFP)
+                    {
+                        StartCoroutine(nameof(Wait1SecLOL));
+                        reachedEndOfPath = true;
+                        return;
+                    }
+                    
+                    if (_LFP)
+                    {
+                        reachedEndOfPath = true;
+                        return;
+                    }
                 }
                 else
                 {
@@ -193,36 +221,20 @@ public class StateEnemyAI : MonoBehaviour
                 }
                 break;
         }
-        
-        
-        
-        
-        /*
-        if (path == null)
-            return;
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
-        
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * (patrolSpeed * Time.deltaTime);
-        
-        rb.AddForce(force);
-        
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
-        }*/
     }
 
+    /* Gonna try to fix tonight :D
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+    */
+
+    
+    // Handles the raycasting when inside of enemy hearing radius
     private void OnTriggerStay2D(Collider2D other)
     {
         
@@ -235,11 +247,35 @@ public class StateEnemyAI : MonoBehaviour
 
         if (hit.collider.CompareTag("Player"))
         {
-            print("Hit!!!");
             state = State.Chase;
             canChase = true;
         }
     }
+    
+    IEnumerator Wait1SecLOL()
+    {
+        _LFP = true;
+        coRoutineCounter += 1;
+
+        if (coRoutineCounter == 5)
+            state = State.Patrol;
+        
+        /*Vector2 targetDir = target.position - transform.position;
+        Vector2 enemyPosition = transform.position;
+                                
+        RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetDir, 2f);
+
+        if (hit.collider.CompareTag("Player"))
+        {
+            print("Hit!!!");
+            state = State.Chase;
+            canChase = true;
+        }*/
+        
+        yield return new WaitForSeconds(1);
+        _LFP = false;
+    }
+
         
     
 }
