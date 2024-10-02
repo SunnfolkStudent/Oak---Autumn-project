@@ -13,7 +13,7 @@ public class StateEnemyAI : MonoBehaviour
         Chase
     }
 
-    private enum Direction
+    private enum EnemyDirection
     {
         Right,
         Left,
@@ -30,6 +30,9 @@ public class StateEnemyAI : MonoBehaviour
     // Variable that enables the Chase switchcase to function only if true
     public bool canChase;
     
+    // Player's hiding variable
+    private bool isThePlayerHiding;
+    
     // Speed for Chase switchcase
     private float speed = 400f;
 
@@ -43,8 +46,6 @@ public class StateEnemyAI : MonoBehaviour
     // Animation stuffs
     private Animator animator;
     
-    
-    
     // Boolean used to determine what way the enemy is patrolling through the array
     bool isMovingForwards = true;
     public float nextWaypointDistance = 3f;
@@ -56,6 +57,7 @@ public class StateEnemyAI : MonoBehaviour
     
     [SerializeField]
     private State state;
+    private EnemyDirection enemyDirection;
 
     // Using A*'s built-in path mechanic
     private Path path;
@@ -73,11 +75,17 @@ public class StateEnemyAI : MonoBehaviour
     // Just the enemy RigidBody and its CircleCollider
     private Rigidbody2D rb;
     private CircleCollider2D cc;
-    
+    private GameObject o;
+    private PlayerController playerController;
+
 
     void Start()
     {
+        // Getting PlayerController Script
+        o = GameObject.Find("Player");
+        playerController = o.GetComponent<PlayerController>();
         
+
         // Getting components
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
@@ -159,6 +167,14 @@ public class StateEnemyAI : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
+    }
+
+    void Update()
+    {
+        isThePlayerHiding = playerController.playerIsHiding;
+        
+        if (isThePlayerHiding)
+            canChase = false;
     }
 
     void FixedUpdate()
@@ -288,6 +304,23 @@ public class StateEnemyAI : MonoBehaviour
 
     private void UpdateSprite()
     {
+        switch (enemyDirection)
+        {
+            case EnemyDirection.Down:
+                //animator.Play()
+                break;
+            case EnemyDirection.Up:
+                //animator.Play()
+                break;
+            case EnemyDirection.Left:
+                //animator.Play()
+                break;
+            case EnemyDirection.Right:
+                //animator.Play()
+                break;
+        }
+        
+        
         switch (state)
         {
             case State.Patrol:
@@ -295,24 +328,28 @@ public class StateEnemyAI : MonoBehaviour
             case State.Chase:
                 if (target.position.x - transform.position.x > 2f)
                 {
+                    enemyDirection = EnemyDirection.Right;
                     print("Left!");
                     break;
                 }
                 
                 if (target.position.x + 2f <= transform.position.x)
                 {
+                    enemyDirection = EnemyDirection.Left;
                     print("Right!");
                     break;
                 }
                 
                 if (target.position.y - transform.position.y < 0f && (target.position.x - transform.position.x >= -2f || target.position.x + 2f >= transform.position.x))
                 {
+                    enemyDirection = EnemyDirection.Down;
                     print("Top!");
                     break;
                 }
 
                 if (target.position.y - transform.position.y > 0f && (target.position.x - transform.position.x >= -2f || target.position.x + 2f >= transform.position.x))
                 {
+                    enemyDirection = EnemyDirection.Up;
                     print("Bottom!");
                     break;
                 }
