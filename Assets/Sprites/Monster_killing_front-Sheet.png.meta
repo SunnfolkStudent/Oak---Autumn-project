@@ -635,7 +635,27 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Monster_killing_front-Sheet_0: 6485384554435932784
+      Monster_killing_front-Sheet_1: -7584654667524994070
+      Monster_killing_front-Sheet_10: 2911789506732720926
+      Monster_killing_front-Sheet_11: -955765645987689275
+      Monster_killing_front-Sheet_12: 5122630064098919652
+      Monster_killing_front-Sheet_13: -9112987888874037621
+      Monster_killing_front-Sheet_14: -6157971823433351545
+      Monster_killing_front-Sheet_15: 5834820209803199434
+      Monster_killing_front-Sheet_16: 8126772271191088976
+      Monster_killing_front-Sheet_17: -7402380404404569649
+      Monster_killing_front-Sheet_18: 770624499613253818
+      Monster_killing_front-Sheet_19: 3377643842008224724
+      Monster_killing_front-Sheet_2: 5733405096564162654
+      Monster_killing_front-Sheet_3: 8798742208529389545
+      Monster_killing_front-Sheet_4: 4526522842316882504
+      Monster_killing_front-Sheet_5: -3182485820748027213
+      Monster_killing_front-Sheet_6: 367107484525287803
+      Monster_killing_front-Sheet_7: -3686492549875822410
+      Monster_killing_front-Sheet_8: 9004269640230465921
+      Monster_killing_front-Sheet_9: 2029041457254631715
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
