@@ -5,7 +5,7 @@ public class MenuScript : MonoBehaviour
 {
     public void GameScene()
     {
-        SceneManager.LoadScene("WorkSpace");
+        SceneManager.LoadScene("Workspace_Maya");
     }
 
     public void QuitGame()

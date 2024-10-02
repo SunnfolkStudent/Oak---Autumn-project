@@ -178,8 +178,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 0}
+<<<<<<< Updated upstream
   walkSpeed: 5
   sprintSpeed: 10
+=======
+  walkSpeed: 2
+  sprintSpeed: 5
+>>>>>>> Stashed changes
   currentSpeed: 0
   stamina: 3
   maxStamina: 3

@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //dialogue
+    //space shuttle interaction
 
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
@@ -246,14 +246,19 @@ public class PlayerController : MonoBehaviour
         index = 0;
         dialoguePanel.SetActive(false);
     }
+    //hiding spot interaction
 
 
     public Vector3 entryLocation;
+    public Sprite openLocker;
+    public Sprite openLockerSide;
+
 
     public void HidingSpotInteract()
     {
         if (!playerIsHiding)
         {
+            hidingSpot.GetComponent<SpriteRenderer>().sprite = openLocker;
             entryLocation = transform.position;
             transform.position = hidingSpot.transform.position;
             print("you are now hidden.");
