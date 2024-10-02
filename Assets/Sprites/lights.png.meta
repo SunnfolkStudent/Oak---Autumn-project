@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: 5a79c1566beefa54ab8227cab24a02c0
+guid: 9b1df66f4b6ddf34b991773d082be3df
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3250053031268936204
-    second: monsterWalk_front_0
+      213: 8896844648848601128
+    second: lights_0
   - first:
-      213: -1950031583564950823
-    second: monsterWalk_front_1
+      213: -838988493365444387
+    second: lights_1
   - first:
-      213: -1711070297389755284
-    second: monsterWalk_front_2
-  - first:
-      213: 4750250668849463303
-    second: monsterWalk_front_3
-  - first:
-      213: -2651596151188279305
-    second: monsterWalk_front_4
-  - first:
-      213: -3656665477586241675
-    second: monsterWalk_front_5
+      213: -3600859888516322830
+    second: lights_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,30 +102,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: monsterWalk_front_0
+      name: lights_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 33
-        height: 33
+        x: 0
+        y: 254
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f59802dcfd75e2d0800000000000000
-      internalID: -3250053031268936204
+      spriteID: 820b4741211f77b70800000000000000
+      internalID: 8896844648848601128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monsterWalk_front_1
+      name: lights_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 5
-        width: 33
-        height: 31
+        x: 16
+        y: 254
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d291d04b9810f4e0800000000000000
-      internalID: -1950031583564950823
+      spriteID: dd0005219605b54f0800000000000000
+      internalID: -838988493365444387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monsterWalk_front_2
+      name: lights_2
       rect:
         serializedVersion: 2
-        x: 83
-        y: 0
-        width: 33
-        height: 35
+        x: 32
+        y: 254
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,74 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c649c5251ae0148e0800000000000000
-      internalID: -1711070297389755284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monsterWalk_front_3
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 2
-        width: 34
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 70085deb0d74ce140800000000000000
-      internalID: 4750250668849463303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monsterWalk_front_4
-      rect:
-        serializedVersion: 2
-        x: 164
-        y: 4
-        width: 33
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7ff21a86953a33bd0800000000000000
-      internalID: -2651596151188279305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monsterWalk_front_5
-      rect:
-        serializedVersion: 2
-        x: 204
-        y: 0
-        width: 33
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 577b90a3f1ae04dc0800000000000000
-      internalID: -3656665477586241675
+      spriteID: 2f92803720d270ec0800000000000000
+      internalID: -3600859888516322830
       vertices: []
       indices: 
       edges: []
@@ -263,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2a0c8b672ae91fd49b2cc9ef0be08795
     internalID: 0
     vertices: []
     indices: 
@@ -273,12 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      monsterWalk_front_0: -3250053031268936204
-      monsterWalk_front_1: -1950031583564950823
-      monsterWalk_front_2: -1711070297389755284
-      monsterWalk_front_3: 4750250668849463303
-      monsterWalk_front_4: -2651596151188279305
-      monsterWalk_front_5: -3656665477586241675
+      lights_0: 8896844648848601128
+      lights_1: -838988493365444387
+      lights_2: -3600859888516322830
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
