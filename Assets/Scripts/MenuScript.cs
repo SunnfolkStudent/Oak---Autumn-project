@@ -8,6 +8,16 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("Workspace_Maya");
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void VictoryScreen()
+    {
+        SceneManager.LoadScene("VictoryScreen");
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
