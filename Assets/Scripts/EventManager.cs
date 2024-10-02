@@ -5,6 +5,7 @@ public class EventManager : MonoBehaviour
     public int activatedTerminals;
     public PlayerController playerController;
     public GameObject player;
+    public Teehee teehee;
 
     public bool AllTerminalsActive()
     {
@@ -25,6 +26,7 @@ public class EventManager : MonoBehaviour
             player.transform.position = playerController.entryLocation;
             playerController.playerIsHiding = false;
             print("you are no longer hidden.");
+            teehee.PlayerUnhides();
         }
     }
 }

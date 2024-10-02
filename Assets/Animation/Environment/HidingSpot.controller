@@ -26,14 +26,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-148071318523770898
+--- !u!1102 &-4609226081202560674
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LockerOpening
+  m_Name: PlayerUnhides
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -74,14 +74,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &4199220654485389989
+--- !u!1102 &4265565280965859523
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LockerHidingIdle
+  m_Name: PlayerHides
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -110,14 +110,14 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -148071318523770898}
-    m_Position: {x: 180, y: 160, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: -6983075572569766055}
     m_Position: {x: 180, y: 100, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 4199220654485389989}
-    m_Position: {x: 180, y: 230, z: 0}
+    m_State: {fileID: 4265565280965859523}
+    m_Position: {x: 215, y: 165, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4609226081202560674}
+    m_Position: {x: 250, y: 230, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

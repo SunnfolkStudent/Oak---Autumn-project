@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.CompareTag("HidingSpot"))
             {
-                firingMethod = other.GetComponent<Teehee>().LockerOpening;
+                firingMethod = other.GetComponent<Teehee>().PlayerHides;
                 hidingAnimator = other.GetComponent<Animator>();
                 
                 playerCanInteractHidingSpot = true;
@@ -257,6 +257,7 @@ public class PlayerController : MonoBehaviour
         index = 0;
         dialoguePanel.SetActive(false);
     }
+    
     //hiding spot interaction
 
 
@@ -268,13 +269,15 @@ public class PlayerController : MonoBehaviour
 
     public void HidingSpotInteract()
     {
+        
         if (!playerIsHiding)
         {
             hidingSpot.GetComponent<SpriteRenderer>().sprite = openLocker;
             entryLocation = transform.position;
             transform.position = hidingSpot.transform.position;
             print("you are now hidden.");
-            firingMethod();
+            //firingMethod();
+            teehee.PlayerHides();
             
             
             gameObject.SetActive(false);

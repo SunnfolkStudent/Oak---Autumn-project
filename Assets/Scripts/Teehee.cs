@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class Teehee : MonoBehaviour
 {
+    public PlayerController playerController;
     private Animator animator;
 
     public void Start()
     {
         animator = GetComponent<Animator>();
     }
-    public void LockerOpening()
+    public void PlayerHides()
     {
-        animator.Play("LockerOpening");
+        animator.Play("PlayerHides");
     }
 
-    public void LockerHiding()
+    public void PlayerUnhides()
     {
-        animator.Play("LockerHidingIdle");
+        animator.Play("PlayerUnhides");
     }
 }
