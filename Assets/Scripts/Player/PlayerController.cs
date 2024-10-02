@@ -11,16 +11,23 @@ public class PlayerController : MonoBehaviour
 {
     public EventManager eventManager;
 
-    //movement variables
     private InputActions _input;
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
+    
+    //movement variables
     public float walkSpeed = 4f;
     public float sprintSpeed = 8f;
     public float currentSpeed;
 
     //animation variables
-    private Animator _animator;
+    private Animator hidingAnimator;
 
+    public delegate void FiringDelegate();
+
+    private FiringDelegate firingMethod;
+    
+    
     private const string _horizontal = "Horizontal";
     private const string _vertical = "Vertical";
     private const string _lastHorizontal = "LastHorizontal";
@@ -112,6 +119,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //interactions
+    public Teehee teehee;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GameObject().layer == 11) //sjekk om andre objekt er på interactables layer
@@ -122,6 +130,9 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.CompareTag("HidingSpot"))
             {
+                firingMethod = other.GetComponent<Teehee>().LockerOpening;
+                hidingAnimator = other.GetComponent<Animator>();
+                
                 playerCanInteractHidingSpot = true;
             }
             else if (other.CompareTag("Terminal"))
@@ -252,6 +263,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 entryLocation;
     public Sprite openLocker;
     public Sprite openLockerSide;
+    
 
 
     public void HidingSpotInteract()
@@ -262,6 +274,9 @@ public class PlayerController : MonoBehaviour
             entryLocation = transform.position;
             transform.position = hidingSpot.transform.position;
             print("you are now hidden.");
+            firingMethod();
+            
+            
             gameObject.SetActive(false);
             playerIsHiding = true;
         }
