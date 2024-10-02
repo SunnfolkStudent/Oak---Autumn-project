@@ -1,0 +1,502 @@
+fileFormatVersion: 2
+guid: e9397a523ce84b44e8023b39014524cb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4344906031074092434
+    second: spaceShuttle_Escape_0
+  - first:
+      213: -4116429337493371043
+    second: spaceShuttle_Escape_1
+  - first:
+      213: 5553752116173801693
+    second: spaceShuttle_Escape_2
+  - first:
+      213: 4164506326011435439
+    second: spaceShuttle_Escape_3
+  - first:
+      213: 2382818322834315866
+    second: spaceShuttle_Escape_4
+  - first:
+      213: -2099407816838277051
+    second: spaceShuttle_Escape_5
+  - first:
+      213: 7372787122756423334
+    second: spaceShuttle_Escape_6
+  - first:
+      213: -2077992602124725287
+    second: spaceShuttle_Escape_7
+  - first:
+      213: -3735916530221453076
+    second: spaceShuttle_Escape_8
+  - first:
+      213: 5986831845076179363
+    second: spaceShuttle_Escape_9
+  - first:
+      213: 1820515050848657730
+    second: spaceShuttle_Escape_10
+  - first:
+      213: -6972597676480792321
+    second: spaceShuttle_Escape_11
+  - first:
+      213: -3067952002506932665
+    second: spaceShuttle_Escape_12
+  - first:
+      213: -5388923680690210889
+    second: spaceShuttle_Escape_13
+  - first:
+      213: -5067904577419920464
+    second: spaceShuttle_Escape_14
+  - first:
+      213: -98893608793732353
+    second: spaceShuttle_Escape_15
+  - first:
+      213: 8305036367131761097
+    second: spaceShuttle_Escape_16
+  - first:
+      213: -1577927094905822035
+    second: spaceShuttle_Escape_17
+  - first:
+      213: 3359256488727966078
+    second: spaceShuttle_Escape_18
+  - first:
+      213: -499692956799262795
+    second: spaceShuttle_Escape_19
+  - first:
+      213: -7323898999588713021
+    second: spaceShuttle_Escape_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6a506b2cfac3b3c0800000000000000
+      internalID: -4344906031074092434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_1
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5706bbc3518fd6c0800000000000000
+      internalID: -4116429337493371043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_2
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd80d17ef14e21d40800000000000000
+      internalID: 5553752116173801693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_3
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa957c2607c4bc930800000000000000
+      internalID: 4164506326011435439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_4
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5ad4d0d3a8711120800000000000000
+      internalID: 2382818322834315866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_5
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5481da6b6b76dd2e0800000000000000
+      internalID: -2099407816838277051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_6
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ae887053d6615660800000000000000
+      internalID: 7372787122756423334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_7
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d35770fcbc7923e0800000000000000
+      internalID: -2077992602124725287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_8
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce0f3a1a5bb572cc0800000000000000
+      internalID: -3735916530221453076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_9
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a913cfe7df751350800000000000000
+      internalID: 5986831845076179363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_10
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24126121bc4c34910800000000000000
+      internalID: 1820515050848657730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_11
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff8f5ab0b5b5c3f90800000000000000
+      internalID: -6972597676480792321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_12
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e30ae88e17c65d0800000000000000
+      internalID: -3067952002506932665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceShuttle_Escape_13
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 0
+        width: 53
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b7f4c2d672b635b0800000000000000
+      internalID: -5388923680690210889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2936306a39cdc394f9936bcaff5b6c48
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      spaceShuttle_Escape_0: -4344906031074092434
+      spaceShuttle_Escape_1: -4116429337493371043
+      spaceShuttle_Escape_10: 1820515050848657730
+      spaceShuttle_Escape_11: -6972597676480792321
+      spaceShuttle_Escape_12: -3067952002506932665
+      spaceShuttle_Escape_13: -5388923680690210889
+      spaceShuttle_Escape_2: 5553752116173801693
+      spaceShuttle_Escape_3: 4164506326011435439
+      spaceShuttle_Escape_4: 2382818322834315866
+      spaceShuttle_Escape_5: -2099407816838277051
+      spaceShuttle_Escape_6: 7372787122756423334
+      spaceShuttle_Escape_7: -2077992602124725287
+      spaceShuttle_Escape_8: -3735916530221453076
+      spaceShuttle_Escape_9: 5986831845076179363
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

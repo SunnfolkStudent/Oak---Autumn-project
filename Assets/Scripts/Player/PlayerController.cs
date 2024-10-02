@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public FiringDelegate firingMethodPlayerHides;
     public FiringDelegate firingMethodPlayerUnhides;
+    public FiringDelegate firingMethodPlayerEscapes;
     
     
     private const string _horizontal = "Horizontal";
@@ -120,7 +121,6 @@ public class PlayerController : MonoBehaviour
     }
 
     //interactions
-    public Teehee teehee;
     public Vector3 hidingSpotPosition;
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -128,6 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             if (other.CompareTag("SpaceShuttle"))
             {
+                firingMethodPlayerEscapes = other.GetComponent<SpaceShuttle_AnimatorController>().PlayerEscaped;
                 playerCanInteractSpaceShuttle = true;
             }
             else if (other.CompareTag("HidingSpot"))
@@ -146,7 +147,7 @@ public class PlayerController : MonoBehaviour
             //aktiverer popup
             float xAxis = other.transform.position.x;
             float yAxis = other.transform.position.y;
-            popUp.transform.position = new Vector2(xAxis, yAxis + 1);
+            popUp.transform.position = new Vector2(xAxis, yAxis + 1.5f);
             popUp.SetActive(true);
         }
     }
@@ -228,6 +229,9 @@ public class PlayerController : MonoBehaviour
         if (eventManager.AllTerminalsActive())
         {
             print("YOU ESCAPED!");
+            firingMethodPlayerEscapes();
+            gameObject.SetActive(false);
+
         }
 
         else
