@@ -22,31 +22,31 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -4344906031074092434, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 0.33333334
+    - time: 0.16666667
       value: {fileID: -4116429337493371043, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 0.6666667
+    - time: 0.33333334
       value: {fileID: 5553752116173801693, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 1
+    - time: 0.5
       value: {fileID: 4164506326011435439, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 1.3333334
+    - time: 0.6666667
       value: {fileID: 2382818322834315866, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 1.6666666
+    - time: 0.8333333
       value: {fileID: -2099407816838277051, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 2
+    - time: 1
       value: {fileID: 7372787122756423334, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 2.3333333
+    - time: 1.1666666
       value: {fileID: 7372787122756423334, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 2.6666667
+    - time: 1.3333334
       value: {fileID: -3735916530221453076, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 3
+    - time: 1.5
       value: {fileID: 5986831845076179363, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 3.3333333
+    - time: 1.6666666
       value: {fileID: 1820515050848657730, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 3.6666667
+    - time: 1.8333334
       value: {fileID: -6972597676480792321, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 4
+    - time: 2
       value: {fileID: -3067952002506932665, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
-    - time: 4.3333335
+    - time: 2.1666667
       value: {fileID: -5388923680690210889, guid: e9397a523ce84b44e8023b39014524cb, type: 3}
     attribute: m_Sprite
     path: 
@@ -89,7 +89,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 4.65
+    m_StopTime: 2.2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -109,7 +109,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 4.65
+  - time: 2.2
     functionName: ToVictoryScreen
     data: 
     objectReferenceParameter: {fileID: 0}
