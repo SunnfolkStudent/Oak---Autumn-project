@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Pathfinding;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
@@ -76,14 +77,19 @@ public class StateEnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     private CircleCollider2D cc;
     private GameObject o;
+    private GameObject t;
+    private Animator enemySprite;
     private PlayerController playerController;
+    private Animator enemyAnimator;
 
 
     void Start()
     {
         // Getting PlayerController Script
         o = GameObject.Find("Player");
+        t = GameObject.Find("/Enemy/Monster");
         playerController = o.GetComponent<PlayerController>();
+        enemySprite = t.GetComponent<Animator>();
         
 
         // Getting components
@@ -171,14 +177,23 @@ public class StateEnemyAI : MonoBehaviour
 
     void Update()
     {
+        
         isThePlayerHiding = playerController.playerIsHiding;
         
         if (isThePlayerHiding)
             canChase = false;
+
+        
+        
+            
+        
     }
 
     void FixedUpdate()
     {
+        
+        var horizontalVelocity = rb.linearVelocityX;
+        var verticalVelocity = rb.linearVelocityY;
         switch (state)
         {
             default:
@@ -246,6 +261,38 @@ public class StateEnemyAI : MonoBehaviour
                 }
                 break;
         }
+        
+        switch (state)
+        {
+            case State.Chase:
+                break;
+            case State.Patrol:
+                if (verticalVelocity > 0.01f && (horizontalVelocity < 1.2f && horizontalVelocity > -1.2f))
+                {
+                    enemyDirection = EnemyDirection.Up;
+                    break;
+                }
+
+                if (verticalVelocity < -0.01f && (horizontalVelocity < 1.2f && horizontalVelocity > -1.2f))
+                {
+                    enemyDirection = EnemyDirection.Down;
+                    break;
+                }
+
+                if (horizontalVelocity > 0.01f)
+                {
+                    enemyDirection = EnemyDirection.Right;
+                    break;
+                }
+
+                if (horizontalVelocity < -0.01f)
+                {
+                    enemyDirection = EnemyDirection.Left;
+                    break;
+                }
+
+                break;
+        }
     }
 
     // WIP WIP WIP WIP WIP 
@@ -307,16 +354,16 @@ public class StateEnemyAI : MonoBehaviour
         switch (enemyDirection)
         {
             case EnemyDirection.Down:
-                //animator.Play()
+                enemySprite.Play("Enemy_WalkDown");
                 break;
             case EnemyDirection.Up:
-                //animator.Play()
+                enemySprite.Play("Enemy_WalkUp");
                 break;
             case EnemyDirection.Left:
-                //animator.Play()
+                enemySprite.Play("Enemy_WalkLeft");
                 break;
             case EnemyDirection.Right:
-                //animator.Play()
+                enemySprite.Play("Enemy_WalkRight");
                 break;
         }
         
