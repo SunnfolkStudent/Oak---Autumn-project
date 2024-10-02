@@ -9,22 +9,15 @@ public class StateEnemyAI : MonoBehaviour
     // Creating enum with both enemy states; Patrol and Chase'
     private enum State
     {
-        Patrol,
+        Patrol, 
         Chase
-    }
-
-    private enum EndOfPath
-    {
-        NotLooking,
-        Looking,
-        
     }
     
     // Public usual variables
     public Transform target;
     public int currentPoint;
     public Transform[] patrolPoints;
-    private Transform playerTransform;
+    
     
     // Variable that enables the Chase switchcase to function only if true
     public bool canChase;
@@ -39,6 +32,9 @@ public class StateEnemyAI : MonoBehaviour
     // Speed for Patrol switchcase
     public float patrolSpeed;
     
+    // Animation stuffs
+    private Animator animator;
+    
     
     
     // Boolean used to determine what way the enemy is patrolling through the array
@@ -52,7 +48,6 @@ public class StateEnemyAI : MonoBehaviour
     
     [SerializeField]
     private State state;
-    private EndOfPath endOfPath;
 
     // Using A*'s built-in path mechanic
     private Path path;
@@ -67,8 +62,10 @@ public class StateEnemyAI : MonoBehaviour
     // Another A* built in function
     Seeker seeker;
     
-    // Just the enemy RigidBody
+    // Just the enemy RigidBody and its CircleCollider
     private Rigidbody2D rb;
+    private CircleCollider2D cc;
+    
 
     void Start()
     {
@@ -76,6 +73,8 @@ public class StateEnemyAI : MonoBehaviour
         // Getting components
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        cc = GetComponent<CircleCollider2D>();
         
         LayerMask mask = LayerMask.GetMask("Player");
         
@@ -88,7 +87,10 @@ public class StateEnemyAI : MonoBehaviour
         
         // Repeats mentioned void function with 0f cooldown and .5f seconds between each repetition
         InvokeRepeating("UpdatePatrolPoint", 0f, .5f);
+        InvokeRepeating("UpdateSprite", 0f, .1f);
     }
+    
+    
 
     void UpdatePatrolPoint()
     {
@@ -188,7 +190,6 @@ public class StateEnemyAI : MonoBehaviour
             case State.Chase: 
                 if (path == null)
                     return;
-
                 if (currentWaypoint >= path.vectorPath.Count)
                 {
                     if (!_LFP)
@@ -223,15 +224,16 @@ public class StateEnemyAI : MonoBehaviour
         }
     }
 
-    /* Gonna try to fix tonight :D
+    // WIP WIP WIP WIP WIP 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            animator.Play("Enemy_KillFromBehind");
+            cc.enabled = false;
         }
     }
-    */
+    
 
     
     // Handles the raycasting when inside of enemy hearing radius
@@ -276,6 +278,49 @@ public class StateEnemyAI : MonoBehaviour
         _LFP = false;
     }
 
-        
-    
+    private void UpdateSprite()
+    {
+        switch (state)
+        {
+            case State.Patrol:
+                break;
+            case State.Chase:
+                // Time for some sprite location logic bullshit!
+                // If the target is above, and within + or - 2 to the sides, moving downward sprite
+                // If the target is below, and within + or -2 to the sides, moving upward sprite
+                // If the target is to the left more than 2, moving right sprite
+                // If the target is to the right more than 2, moving left sprite
+                if (target.position.x - transform.position.x > 2f)
+                {
+                    print("Left!");
+                    break;
+                }
+                
+                if (target.position.x + 2f <= transform.position.x)
+                {
+                    print("Right!");
+                    break;
+                }
+                
+                if (target.position.y - transform.position.y < 0f && (target.position.x - transform.position.x >= -2f || target.position.x + 2f >= transform.position.x))
+                {
+                    print("Top!");
+                    break;
+                }
+
+                if (target.position.y - transform.position.y > 0f && (target.position.x - transform.position.x >= -2f || target.position.x + 2f >= transform.position.x))
+                {
+                    print("Bottom!");
+                    break;
+                }
+                break;
+        }
+    }
+
+    // All good things must come to an end - Geoffrey Chaucer
+    private void GameOver()
+    {
+        // SceneManager.LoadScene("Game Over scene name goes here");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
