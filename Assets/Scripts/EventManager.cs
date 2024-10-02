@@ -26,7 +26,7 @@ public class EventManager : MonoBehaviour
             player.transform.position = playerController.entryLocation;
             playerController.playerIsHiding = false;
             print("you are no longer hidden.");
-            teehee.PlayerUnhides();
+            playerController.firingMethodPlayerUnhides();
         }
     }
 }

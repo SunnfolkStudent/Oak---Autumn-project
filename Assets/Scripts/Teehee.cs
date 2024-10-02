@@ -3,7 +3,7 @@ using UnityEngine;
 public class Teehee : MonoBehaviour
 {
     public PlayerController playerController;
-    private Animator animator;
+    public Animator animator;
 
     public void Start()
     {

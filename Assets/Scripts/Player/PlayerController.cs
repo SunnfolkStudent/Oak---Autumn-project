@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
 
     public delegate void FiringDelegate();
 
-    private FiringDelegate firingMethod;
+    public FiringDelegate firingMethodPlayerHides;
+    public FiringDelegate firingMethodPlayerUnhides;
     
     
     private const string _horizontal = "Horizontal";
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
 
     //interactions
     public Teehee teehee;
+    public Vector3 hidingSpotPosition;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GameObject().layer == 11) //sjekk om andre objekt er på interactables layer
@@ -130,9 +132,10 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.CompareTag("HidingSpot"))
             {
-                firingMethod = other.GetComponent<Teehee>().PlayerHides;
+                firingMethodPlayerHides = other.GetComponent<Teehee>().PlayerHides;
+                firingMethodPlayerUnhides = other.GetComponent<Teehee>().PlayerUnhides;
                 hidingAnimator = other.GetComponent<Animator>();
-                
+                hidingSpotPosition = other.transform.position;
                 playerCanInteractHidingSpot = true;
             }
             else if (other.CompareTag("Terminal"))
@@ -269,15 +272,14 @@ public class PlayerController : MonoBehaviour
 
     public void HidingSpotInteract()
     {
-        
         if (!playerIsHiding)
         {
             hidingSpot.GetComponent<SpriteRenderer>().sprite = openLocker;
             entryLocation = transform.position;
-            transform.position = hidingSpot.transform.position;
+            transform.position = hidingSpotPosition;
             print("you are now hidden.");
-            //firingMethod();
-            teehee.PlayerHides();
+            firingMethodPlayerHides();
+            //teehee.PlayerHides();
             
             
             gameObject.SetActive(false);
