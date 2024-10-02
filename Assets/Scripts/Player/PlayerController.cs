@@ -1,16 +1,13 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-<<<<<<< HEAD
 using FMOD.Studio;
 using FMODUnity;
-=======
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
->>>>>>> main
 
 public class PlayerController : MonoBehaviour
 {
@@ -62,12 +59,11 @@ public class PlayerController : MonoBehaviour
     public bool playerIsHiding;
 
     public bool terminalInteractedWith;
-<<<<<<< HEAD
     
-=======
 
 
->>>>>>> main
+
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -76,12 +72,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _input = GetComponent<InputActions>();
-<<<<<<< HEAD
+
         playerFootsteps = AudioManagerController.instance.CreateInstance(FMODEvents.instance.WalkingSound);
-=======
+
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
->>>>>>> main
+
         //LayerMask interactablesLayer = LayerMask.GetMask("Interactables");
     }
 
@@ -208,13 +204,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
+
     public void SpaceShuttle_Interact()
     {
         
     }
 
-=======
+
     //space shuttle interaction
 
     public GameObject dialoguePanel;
@@ -249,7 +245,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
->>>>>>> main
+
     public void SpaceShuttleInteract()
     {
         if (eventManager.AllTerminalsActive())
@@ -316,6 +312,6 @@ public class PlayerController : MonoBehaviour
     
     private void UpdateSound()
     {
-        RuntimeManager.PlayOneShot("event:/sfx_playerWalk");
+        RuntimeManager.PlayOneShot("event:/Player/sfx_playerWalk");
     }
 }

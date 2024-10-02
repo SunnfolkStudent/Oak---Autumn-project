@@ -1,9 +1,6 @@
 using UnityEngine;
-<<<<<<< HEAD
 using FMODUnity;
-=======
 using UnityEngine.Rendering.Universal;
->>>>>>> main
 using UnityEngine.UI;
 
 public class TerminalController : MonoBehaviour
