@@ -12,6 +12,14 @@ public class StateEnemyAI : MonoBehaviour
         Patrol, 
         Chase
     }
+
+    private enum Direction
+    {
+        Right,
+        Left,
+        Up,
+        Down
+    }
     
     // Public usual variables
     public Transform target;
@@ -285,11 +293,6 @@ public class StateEnemyAI : MonoBehaviour
             case State.Patrol:
                 break;
             case State.Chase:
-                // Time for some sprite location logic bullshit!
-                // If the target is above, and within + or - 2 to the sides, moving downward sprite
-                // If the target is below, and within + or -2 to the sides, moving upward sprite
-                // If the target is to the left more than 2, moving right sprite
-                // If the target is to the right more than 2, moving left sprite
                 if (target.position.x - transform.position.x > 2f)
                 {
                     print("Left!");
