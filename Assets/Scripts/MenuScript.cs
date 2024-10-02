@@ -18,6 +18,11 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("VictoryScreen");
     }
 
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
