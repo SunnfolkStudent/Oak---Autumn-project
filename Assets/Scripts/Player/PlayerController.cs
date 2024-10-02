@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
     private int index;
     public float wordSpeed;
     public GameObject contButton;
-
+    public GameObject spaceShuttle;
     IEnumerator Typing()
     {
         foreach (char letter in dialogue[index].ToCharArray())
@@ -229,6 +229,7 @@ public class PlayerController : MonoBehaviour
         if (eventManager.AllTerminalsActive())
         {
             print("YOU ESCAPED!");
+            spaceShuttle.transform.position = new Vector3(4.965f, spaceShuttle.transform.position.y, 0);
             firingMethodPlayerEscapes();
             gameObject.SetActive(false);
 
