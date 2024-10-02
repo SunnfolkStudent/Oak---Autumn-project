@@ -11,6 +11,10 @@ public class FMODEvents : MonoBehaviour
     
     [field: Header ("TerminalSound")]
     [field: SerializeField] public EventReference TerminalSound { get; private set; }
+    
+    [field: Header ("HideSound")]
+    [field: SerializeField] public EventReference HideSound { get; private set; }
+    
     public static FMODEvents instance { get; private set; }
 
     private void Awake()
