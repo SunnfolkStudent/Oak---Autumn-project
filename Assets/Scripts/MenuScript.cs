@@ -5,7 +5,22 @@ public class MenuScript : MonoBehaviour
 {
     public void GameScene()
     {
-        SceneManager.LoadScene("Workspace_Maya");
+        SceneManager.LoadScene("FUCK_OFF");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void VictoryScreen()
+    {
+        SceneManager.LoadScene("VictoryScreen");
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
     public void QuitGame()

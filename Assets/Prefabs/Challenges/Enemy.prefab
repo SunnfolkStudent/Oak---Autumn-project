@@ -48,7 +48,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2056
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -67,7 +67,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 2
+  m_Radius: 5
 --- !u!1 &4277180581110950125
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7387817142128206933}
   - component: {fileID: 100058331355626500}
+  - component: {fileID: 7223995272598751434}
   - component: {fileID: 2333012065930095428}
   m_Layer: 4
   m_Name: Monster
@@ -144,7 +145,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 499
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,6 +157,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7223995272598751434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4277180581110950125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9fd7981b9b3e844a52d00856eb503a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &2333012065930095428
 Animator:
   serializedVersion: 7
@@ -166,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 4277180581110950125}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dab7f683680af5e4785ab196ce83dbbf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 70d2ec3ebeccb514e966b7b905af7dc9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -208,7 +221,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.49, y: 7.17, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7387817142128206933}
@@ -266,6 +279,7 @@ MonoBehaviour:
   patrolSpeed: 400
   nextWaypointDistance: 1
   state: 0
+  enemyDirection: 0
   currentWaypoint: 0
 --- !u!58 &211527029432870571
 CircleCollider2D:
@@ -302,7 +316,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 1.2
 --- !u!50 &5787683180835783980
 Rigidbody2D:
   serializedVersion: 5

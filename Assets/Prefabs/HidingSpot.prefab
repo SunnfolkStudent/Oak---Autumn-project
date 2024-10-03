@@ -35,7 +35,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+<<<<<<< HEAD
   - {fileID: 6195429443279078353}
+=======
+  - {fileID: 1324795163441302235}
+>>>>>>> main
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8922963232768826289
@@ -248,7 +252,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   animator: {fileID: 5000121005436118718}
+<<<<<<< HEAD
 --- !u!1001 &2242663845458740186
+=======
+--- !u!1001 &6379210938282166992
+>>>>>>> main
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -305,8 +313,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3964cad0d51f4b4478492b7ce2e5d55b, type: 3}
+<<<<<<< HEAD
 --- !u!4 &6195429443279078353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5396751212169871371, guid: 3964cad0d51f4b4478492b7ce2e5d55b, type: 3}
   m_PrefabInstance: {fileID: 2242663845458740186}
+=======
+--- !u!4 &1324795163441302235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5396751212169871371, guid: 3964cad0d51f4b4478492b7ce2e5d55b, type: 3}
+  m_PrefabInstance: {fileID: 6379210938282166992}
+>>>>>>> main
   m_PrefabAsset: {fileID: 0}
