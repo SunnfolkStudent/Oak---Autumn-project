@@ -11,7 +11,8 @@ public class StateEnemyAI : MonoBehaviour
     private enum State
     {
         Patrol, 
-        Chase
+        Chase,
+        Dead
     }
 
     private enum EnemyDirection
@@ -58,6 +59,8 @@ public class StateEnemyAI : MonoBehaviour
     
     [SerializeField]
     private State state;
+    
+    [SerializeField]
     private EnemyDirection enemyDirection;
 
     // Using A*'s built-in path mechanic
@@ -78,9 +81,12 @@ public class StateEnemyAI : MonoBehaviour
     private CircleCollider2D cc;
     private GameObject o;
     private GameObject t;
+    private GameObject e;
     private Animator enemySprite;
     private PlayerController playerController;
     private Animator enemyAnimator;
+    private Rigidbody2D playerrb2d;
+    
 
 
     void Start()
@@ -88,8 +94,10 @@ public class StateEnemyAI : MonoBehaviour
         // Getting PlayerController Script
         o = GameObject.Find("Player");
         t = GameObject.Find("/Enemy/Monster");
+        e = GameObject.Find("Enemy");
         playerController = o.GetComponent<PlayerController>();
         enemySprite = t.GetComponent<Animator>();
+        
         
 
         // Getting components
@@ -97,6 +105,7 @@ public class StateEnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         cc = GetComponent<CircleCollider2D>();
+        playerrb2d = o.GetComponent<Rigidbody2D>();
         
         LayerMask mask = LayerMask.GetMask("Player");
         
@@ -119,7 +128,8 @@ public class StateEnemyAI : MonoBehaviour
 
         switch (state)
         {
-            default:
+            case State.Dead:
+                break;
                 // Switch state containing the Patrol logic
                 case State.Patrol:
                     Vector3 patrolDestination = patrolPoints[currentPoint].position;
@@ -177,6 +187,17 @@ public class StateEnemyAI : MonoBehaviour
 
     void Update()
     {
+        switch (state)
+        {
+            case State.Dead:
+                break;
+            case State.Patrol:
+                cc.radius = 0.6f;
+                break;
+            case State.Chase:
+                cc.radius = 1.2f;
+                break;
+        }
         
         isThePlayerHiding = playerController.playerIsHiding;
         
@@ -196,7 +217,8 @@ public class StateEnemyAI : MonoBehaviour
         var verticalVelocity = rb.linearVelocityY;
         switch (state)
         {
-            default:
+                case State.Dead:
+                break;
                 // Part of the code that controls patrolling, refreshes 50 times a second
                 case State.Patrol:
                     if (path == null)
@@ -264,16 +286,18 @@ public class StateEnemyAI : MonoBehaviour
         
         switch (state)
         {
+            case State.Dead:
+                break;
             case State.Chase:
                 break;
             case State.Patrol:
-                if (verticalVelocity > 0.01f && (horizontalVelocity < 1.2f && horizontalVelocity > -1.2f))
+                if (verticalVelocity > 1f && (horizontalVelocity < 1.2f && horizontalVelocity > -1.2f))
                 {
                     enemyDirection = EnemyDirection.Up;
                     break;
                 }
 
-                if (verticalVelocity < -0.01f && (horizontalVelocity < 1.2f && horizontalVelocity > -1.2f))
+                if (verticalVelocity < -1f)
                 {
                     enemyDirection = EnemyDirection.Down;
                     break;
@@ -298,10 +322,38 @@ public class StateEnemyAI : MonoBehaviour
     // WIP WIP WIP WIP WIP 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && state == State.Chase) 
         {
-            animator.Play("Enemy_KillFromBehind");
+            
+            switch (enemyDirection)
+            {
+                case EnemyDirection.Down:
+                    enemySprite.Play("Enemy_KillFromBehind");
+                    
+                    
+                    break;
+                case EnemyDirection.Up:
+                    enemySprite.Play("Enemy_KillFromInFront");
+                    
+                    break;
+                case EnemyDirection.Left:
+                    enemySprite.Play("Enemy_KillFromRight");
+                    
+                    break;
+                case EnemyDirection.Right:
+                    enemySprite.Play("Enemy_KillFromLeft");
+                    
+                    break;
+            }
+            print("State is now dead");
+            state = State.Dead;
             cc.enabled = false;
+            Destroy(other.gameObject);
+            
+
+
+
+
         }
     }
     
@@ -310,16 +362,26 @@ public class StateEnemyAI : MonoBehaviour
     // Handles the raycasting when inside of enemy hearing radius
     private void OnTriggerStay2D(Collider2D other)
     {
-        
+        switch (state)
+        {
+            case State.Dead:
+                return;
+        }
         
         Vector2 targetDir = target.position - transform.position;
         Vector2 enemyPosition = transform.position;
         
+        var playerHorizontal = playerrb2d.linearVelocityX;
+        var playerVertical = playerrb2d.linearVelocityY;
+        
+        
+        
         
         RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetDir);
 
-        if (hit.collider.CompareTag("Player"))
+        if (hit.collider.CompareTag("Player") && (playerHorizontal > 0f || playerVertical > 0f))
         {
+            print("Found ya!!");
             state = State.Chase;
             canChase = true;
         }
@@ -333,24 +395,13 @@ public class StateEnemyAI : MonoBehaviour
         if (coRoutineCounter == 5)
             state = State.Patrol;
         
-        /*Vector2 targetDir = target.position - transform.position;
-        Vector2 enemyPosition = transform.position;
-                                
-        RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetDir, 2f);
-
-        if (hit.collider.CompareTag("Player"))
-        {
-            print("Hit!!!");
-            state = State.Chase;
-            canChase = true;
-        }*/
-        
         yield return new WaitForSeconds(1);
         _LFP = false;
     }
 
     private void UpdateSprite()
     {
+        if (state != State.Dead)
         switch (enemyDirection)
         {
             case EnemyDirection.Down:
@@ -370,6 +421,8 @@ public class StateEnemyAI : MonoBehaviour
         
         switch (state)
         {
+            case State.Dead:
+                break;
             case State.Patrol:
                 break;
             case State.Chase:
@@ -404,10 +457,6 @@ public class StateEnemyAI : MonoBehaviour
         }
     }
 
-    // All good things must come to an end - Geoffrey Chaucer
-    private void GameOver()
-    {
-        // SceneManager.LoadScene("Game Over scene name goes here");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-}
+    
+}   
+// All good things must come to an end - Geoffrey Chaucer
