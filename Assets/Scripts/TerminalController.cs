@@ -5,11 +5,11 @@ using UnityEngine.UI;
 public class TerminalController : MonoBehaviour
 {
     public EventManager eventManager;
-    /*
-    public InputActions inputActions;
-    public PlayerController playerController;
-    */
     
+    public InputActions _input;
+    //public PlayerController playerController;
+    
+
     public bool playerIsClose;
     public bool terminalIsActivated;
     public Sprite activatedTerminalSprite;
@@ -19,15 +19,19 @@ public class TerminalController : MonoBehaviour
     public Sprite spaceShuttleActivatedSprite;
 
     public Text terminalCounter;
-    
-    
+
+    private SpriteRenderer terminalSpriteRenderer;
+
+
     void Start()
     {
+        terminalSpriteRenderer = GetComponent<SpriteRenderer>();
         terminalLight = GetComponentInChildren<Light2D>();
+        _input = GetComponent<InputActions>();
     }
-    
-    
-    private void OnTriggerEnter2D(Collider2D other)//other.transform.position
+
+
+    private void OnTriggerEnter2D(Collider2D other) //other.transform.position
     {
         if (other.CompareTag("Player"))
         {
@@ -45,12 +49,11 @@ public class TerminalController : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3)) 
-            && playerIsClose && terminalIsActivated == false)
+        if (_input.interact && playerIsClose && terminalIsActivated == false)
         {
-            GetComponent<SpriteRenderer>().sprite = activatedTerminalSprite;
+            terminalSpriteRenderer.sprite = activatedTerminalSprite;
             terminalLight.color = Color.cyan;
-            
+
             terminalIsActivated = true;
             eventManager.activatedTerminals++;
 

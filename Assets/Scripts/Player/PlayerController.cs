@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private InputActions _input;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    
+
     //movement variables
     public float walkSpeed = 4f;
     public float sprintSpeed = 8f;
@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     public FiringDelegate firingMethodPlayerHides;
     public FiringDelegate firingMethodPlayerUnhides;
     public FiringDelegate firingMethodPlayerEscapes;
-    
-    
+
+
     private const string _horizontal = "Horizontal";
     private const string _vertical = "Vertical";
     private const string _lastHorizontal = "LastHorizontal";
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         _input = GetComponent<InputActions>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        //InvokeRepeating("ContButtonHandler", 0f, 0.1f);
 
         //LayerMask interactablesLayer = LayerMask.GetMask("Interactables");
     }
@@ -122,6 +123,7 @@ public class PlayerController : MonoBehaviour
 
     //interactions
     public Vector3 hidingSpotPosition;
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GameObject().layer == 11) //sjekk om andre objekt er på interactables layer
@@ -159,7 +161,6 @@ public class PlayerController : MonoBehaviour
             if (other.CompareTag("SpaceShuttle"))
             {
                 playerCanInteractSpaceShuttle = false;
-                
             }
             else if (other.CompareTag("HidingSpot"))
             {
@@ -188,7 +189,17 @@ public class PlayerController : MonoBehaviour
         {
             terminalInteractedWith = true;
         }
+        if (dialogueText.text == dialogue[index])
+        {
+            print("finished writing");
+            contButton.SetActive(true);
+            if (_input.interact)
+            {
+                NextLine();
+            }
+        }
     }
+    
 
     //space shuttle interaction
 
@@ -199,6 +210,7 @@ public class PlayerController : MonoBehaviour
     public float wordSpeed;
     public GameObject contButton;
     public GameObject spaceShuttle;
+
     IEnumerator Typing()
     {
         foreach (char letter in dialogue[index].ToCharArray())
@@ -232,7 +244,6 @@ public class PlayerController : MonoBehaviour
             spaceShuttle.transform.position = new Vector3(4.965f, spaceShuttle.transform.position.y, 0);
             firingMethodPlayerEscapes();
             gameObject.SetActive(false);
-
         }
 
         else
@@ -247,15 +258,6 @@ public class PlayerController : MonoBehaviour
                 dialoguePanel.SetActive(true);
                 StartCoroutine(Typing());
             }
-
-            if (dialogueText.text == dialogue[index])
-            {
-                contButton.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    NextLine();
-                }
-            }
         }
     }
 
@@ -265,14 +267,12 @@ public class PlayerController : MonoBehaviour
         index = 0;
         dialoguePanel.SetActive(false);
     }
-    
+
     //hiding spot interaction
-
-
+    
     public Vector3 entryLocation;
     public Sprite openLocker;
     public Sprite openLockerSide;
-    
 
 
     public void HidingSpotInteract()
@@ -285,8 +285,8 @@ public class PlayerController : MonoBehaviour
             print("you are now hidden.");
             firingMethodPlayerHides();
             //teehee.PlayerHides();
-            
-            
+
+
             gameObject.SetActive(false);
             playerIsHiding = true;
         }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1101675905533460919}
   - component: {fileID: 1789523353790898215}
   - component: {fileID: -6759616995904583343}
+  - component: {fileID: -9129945213835558962}
   m_Layer: 11
   m_Name: Terminal
   m_TagString: Terminal
@@ -231,6 +232,21 @@ MonoBehaviour:
   spaceShuttle: {fileID: 0}
   spaceShuttleActivatedSprite: {fileID: -5597284880801261184, guid: 039e0a83ee7dc00448a83f326dbc8571, type: 3}
   terminalCounter: {fileID: 0}
+--- !u!114 &-9129945213835558962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679668123616232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00a8c89b786e67409a49f83726a469d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Movement: {x: 0, y: 0}
+  interact: 0
+  sprint: 0
 --- !u!1001 &8323630713188312276
 PrefabInstance:
   m_ObjectHideFlags: 0
