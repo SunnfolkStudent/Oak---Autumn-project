@@ -38,9 +38,8 @@ public class StateEnemyAI : MonoBehaviour
     private bool isThePlayerHiding;
     
     // Speed for Chase switchcase
-    private float speed = 600f;
+    private float speed = 700f;
     
-
     // CoRoutine
     private bool _LFP = false;
     private int coRoutineCounter = 0;
@@ -206,11 +205,14 @@ public class StateEnemyAI : MonoBehaviour
         
         if (isThePlayerHiding)
             canChase = false;
+    }
 
-        
-        
-            
-        
+    public void CummingForYourAss()
+    {
+        state = State.Chase;
+        canChase = true;
+        RuntimeManager.PlayOneShot("event:/Monster/sfx_monsterScream");
+        print("finalChase");
     }
 
     void FixedUpdate()
@@ -357,7 +359,7 @@ public class StateEnemyAI : MonoBehaviour
                     break;
             }
             state = State.Dead;
-            cc.enabled = false;
+            //cc.enabled = false;
             Destroy(other.gameObject);
             
 
@@ -394,7 +396,6 @@ public class StateEnemyAI : MonoBehaviour
         if (hit.collider.CompareTag("Player") && (playerHorizontal > 0f || playerVertical > 0f) && state != State.Chase)
             
         {
-            print("Found ya!!");
             state = State.Chase;
             canChase = true;
             RuntimeManager.PlayOneShot("event:/Monster/sfx_monsterScream");

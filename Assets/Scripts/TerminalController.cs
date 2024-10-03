@@ -20,11 +20,17 @@ public class TerminalController : MonoBehaviour
     public Sprite spaceShuttleActivatedSprite;
 
     public Text terminalCounter;
+
+    public StateEnemyAI stateEnemyAI;
+    public GameObject o;
     
     
     void Start()
     {
         terminalLight = GetComponentInChildren<Light2D>();
+        o = GameObject.Find("Enemy");
+        stateEnemyAI = GameObject.Find("Enemy").GetComponent<StateEnemyAI>();
+        
     }
     
     
@@ -61,6 +67,7 @@ public class TerminalController : MonoBehaviour
             {
                 terminalCounter.text = ("ESCAPE");
                 spaceShuttle.GetComponent<SpriteRenderer>().sprite = spaceShuttleActivatedSprite;
+                stateEnemyAI.CummingForYourAss();
             }
             else
             {
