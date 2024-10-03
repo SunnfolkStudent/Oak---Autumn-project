@@ -15,6 +15,9 @@ public class FMODEvents : MonoBehaviour
     [field: Header ("HideSound")]
     [field: SerializeField] public EventReference HideSound { get; private set; }
     
+    [field: Header ("HideBang")]
+    [field: SerializeField] public EventReference HideBang { get; private set; }
+    
     public static FMODEvents instance { get; private set; }
 
     private void Awake()

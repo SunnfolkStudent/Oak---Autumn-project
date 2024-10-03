@@ -194,6 +194,8 @@ MonoBehaviour:
   hidingSpot: {fileID: 0}
   playerIsHiding: 0
   terminalInteractedWith: 0
+  teehee: {fileID: 0}
+  hidingSpotPosition: {x: 0, y: 0, z: 0}
   dialoguePanel: {fileID: 0}
   dialogueText: {fileID: 0}
   dialogue: []

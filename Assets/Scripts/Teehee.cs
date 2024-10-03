@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class Teehee : MonoBehaviour
 {
@@ -17,5 +18,14 @@ public class Teehee : MonoBehaviour
     public void PlayerUnhides()
     {
         animator.Play("PlayerUnhides");
+    }
+    
+    private void UpdateHideSound()
+    {
+        RuntimeManager.PlayOneShot("event:/Ambiance and SFX/sfx_hidingNoise");
+    }
+    private void UpdateSlamSound()
+    {
+        RuntimeManager.PlayOneShot("event:/Ambiance and SFX/sfx_hidingSlam");
     }
 }
