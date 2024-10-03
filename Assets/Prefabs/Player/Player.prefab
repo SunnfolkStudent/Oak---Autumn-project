@@ -193,11 +193,13 @@ MonoBehaviour:
   hidingSpot: {fileID: 0}
   playerIsHiding: 0
   terminalInteractedWith: 0
+  hidingSpotPosition: {x: 0, y: 0, z: 0}
   dialoguePanel: {fileID: 0}
   dialogueText: {fileID: 0}
   dialogue: []
   wordSpeed: 0
   contButton: {fileID: 0}
+  spaceShuttle: {fileID: 0}
   entryLocation: {x: 0, y: 0, z: 0}
   openLocker: {fileID: 0}
   openLockerSide: {fileID: 0}
