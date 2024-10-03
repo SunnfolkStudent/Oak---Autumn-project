@@ -4,6 +4,7 @@ using Pathfinding;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StateEnemyAI : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class StateEnemyAI : MonoBehaviour
     
     // Speed for Chase switchcase
     private float speed = 400f;
+    
 
     // CoRoutine
     private bool _LFP = false;
@@ -322,19 +324,28 @@ public class StateEnemyAI : MonoBehaviour
     // WIP WIP WIP WIP WIP 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        int randbitch = Random.Range(1, 3);
         if (other.gameObject.CompareTag("Player") && state == State.Chase) 
         {
             
             switch (enemyDirection)
             {
                 case EnemyDirection.Down:
-                    enemySprite.Play("Enemy_KillFromBehind");
-                    
-                    
+                    if (randbitch == 1)
+                    {
+                        enemySprite.Play("Enemy_KillFromLeft");
+                        break;
+                    }
+                    else if (randbitch == 2)
+                    {
+                        enemySprite.Play("Enemy_KillFromRight");
+                        break;
+                    }
+
                     break;
+                    
                 case EnemyDirection.Up:
                     enemySprite.Play("Enemy_KillFromInFront");
-                    
                     break;
                 case EnemyDirection.Left:
                     enemySprite.Play("Enemy_KillFromRight");
@@ -345,7 +356,6 @@ public class StateEnemyAI : MonoBehaviour
                     
                     break;
             }
-            print("State is now dead");
             state = State.Dead;
             cc.enabled = false;
             Destroy(other.gameObject);
@@ -360,31 +370,37 @@ public class StateEnemyAI : MonoBehaviour
 
     
     // Handles the raycasting when inside of enemy hearing radius
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)  
     {
         switch (state)
         {
             case State.Dead:
                 return;
         }
-        
         Vector2 targetDir = target.position - transform.position;
         Vector2 enemyPosition = transform.position;
-        
+        RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetDir);
         var playerHorizontal = playerrb2d.linearVelocityX;
         var playerVertical = playerrb2d.linearVelocityY;
-        
-        
-        
-        
-        RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetDir);
 
+        /*if (this.gameObject.layer != LayerMask.NameToLayer("Enemy") ||
+            this.gameObject.layer != LayerMask.NameToLayer("EnemyReach"))
+        {
+            print("Bitch you though");
+            return;
+        }*/
+            
+        
         if (hit.collider.CompareTag("Player") && (playerHorizontal > 0f || playerVertical > 0f))
+            
         {
             print("Found ya!!");
             state = State.Chase;
             canChase = true;
         }
+    
+        
+        
     }
     
     IEnumerator Wait1SecLOL()
@@ -429,28 +445,24 @@ public class StateEnemyAI : MonoBehaviour
                 if (target.position.x - transform.position.x > 2f)
                 {
                     enemyDirection = EnemyDirection.Right;
-                    print("Left!");
                     break;
                 }
                 
                 if (target.position.x + 2f <= transform.position.x)
                 {
                     enemyDirection = EnemyDirection.Left;
-                    print("Right!");
                     break;
                 }
                 
                 if (target.position.y - transform.position.y < 0f && (target.position.x - transform.position.x >= -2f || target.position.x + 2f >= transform.position.x))
                 {
                     enemyDirection = EnemyDirection.Down;
-                    print("Top!");
                     break;
                 }
 
                 if (target.position.y - transform.position.y > 0f && (target.position.x - transform.position.x >= -2f || target.position.x + 2f >= transform.position.x))
                 {
                     enemyDirection = EnemyDirection.Up;
-                    print("Bottom!");
                     break;
                 }
                 break;

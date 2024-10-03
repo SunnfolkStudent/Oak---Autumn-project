@@ -5,7 +5,7 @@ public class MenuScript : MonoBehaviour
 {
     public void GameScene()
     {
-        SceneManager.LoadScene("Workspace_Maya");
+        SceneManager.LoadScene("FUCK_OFF");
     }
 
     public void MainMenu()

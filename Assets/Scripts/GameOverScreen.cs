@@ -7,7 +7,7 @@ public class GameOverScreen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("Workspace_Maya");
+            SceneManager.LoadScene("FUCKOFF");
         }
         
     }
