@@ -320,8 +320,7 @@ public class StateEnemyAI : MonoBehaviour
                 break;
         }
     }
-
-    // WIP WIP WIP WIP WIP 
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         int randbitch = Random.Range(1, 3);
