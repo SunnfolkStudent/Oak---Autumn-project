@@ -5,7 +5,7 @@ public class MenuScript : MonoBehaviour
 {
     public void GameScene()
     {
-        SceneManager.LoadScene("FUCK_OFF");
+        SceneManager.LoadScene("FUCKOFF ROBIN");
     }
 
     public void MainMenu()

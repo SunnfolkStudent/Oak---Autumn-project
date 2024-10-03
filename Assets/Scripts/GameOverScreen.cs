@@ -7,7 +7,7 @@ public class GameOverScreen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("FUCKOFF");
+            SceneManager.LoadScene("FUCKOFF ROBIN");
         }
         
     }

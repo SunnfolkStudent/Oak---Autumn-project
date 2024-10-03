@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class StateEnemyAI : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class StateEnemyAI : MonoBehaviour
     private bool isThePlayerHiding;
     
     // Speed for Chase switchcase
-    private float speed = 400f;
+    private float speed = 600f;
     
 
     // CoRoutine
@@ -94,7 +95,7 @@ public class StateEnemyAI : MonoBehaviour
     void Start()
     {
         // Getting PlayerController Script
-        o = GameObject.Find("Player");
+        o = GameObject.Find("RealPlayer");
         t = GameObject.Find("/Enemy/Monster");
         e = GameObject.Find("Enemy");
         playerController = o.GetComponent<PlayerController>();
@@ -137,7 +138,7 @@ public class StateEnemyAI : MonoBehaviour
                     Vector3 patrolDestination = patrolPoints[currentPoint].position;
         
                     float distanceToPatrolDestination = Vector3.Distance(transform.position, patrolDestination);
-                    if (distanceToPatrolDestination < 0.2f)
+                    if (distanceToPatrolDestination < 1.5f)
                     {
                         if (isMovingForwards)
                         {
@@ -390,12 +391,13 @@ public class StateEnemyAI : MonoBehaviour
         }*/
             
         
-        if (hit.collider.CompareTag("Player") && (playerHorizontal > 0f || playerVertical > 0f))
+        if (hit.collider.CompareTag("Player") && (playerHorizontal > 0f || playerVertical > 0f) && state != State.Chase)
             
         {
             print("Found ya!!");
             state = State.Chase;
             canChase = true;
+            RuntimeManager.PlayOneShot("event:/Monster/sfx_monsterScream");
         }
     
         
