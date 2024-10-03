@@ -36,6 +36,6 @@ public class DeathController : MonoBehaviour
 
     public void DoTheRestart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("GameOver");
     }
 }
