@@ -3,6 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+    private GameObject o;
+
+    private HighScoreController highScript;
+    
+    void Start()
+    {
+        o = GameObject.Find("HighScoreManager");
+        highScript = o.GetComponent<HighScoreController>();
+        
+        if (SceneManager.GetActiveScene().name == "VictoryScreen")
+        {
+            highScript.MenuScore();
+        }
+    }
+    
     public void GameScene()
     {
         SceneManager.LoadScene("FUCKOFF ROBIN");
@@ -28,7 +43,7 @@ public class MenuScript : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit()
+        Application.Quit();
 #endif
     }
 }

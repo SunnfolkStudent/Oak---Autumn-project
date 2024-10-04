@@ -231,6 +231,8 @@ MonoBehaviour:
   spaceShuttle: {fileID: 0}
   spaceShuttleActivatedSprite: {fileID: -5597284880801261184, guid: 039e0a83ee7dc00448a83f326dbc8571, type: 3}
   terminalCounter: {fileID: 0}
+  stateEnemyAI: {fileID: 0}
+  o: {fileID: 0}
 --- !u!1001 &8323630713188312276
 PrefabInstance:
   m_ObjectHideFlags: 0

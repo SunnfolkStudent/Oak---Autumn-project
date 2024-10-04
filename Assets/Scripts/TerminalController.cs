@@ -1,15 +1,15 @@
 using UnityEngine;
 using FMODUnity;
+using NUnit.Framework.Constraints;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class TerminalController : MonoBehaviour
 {
     public EventManager eventManager;
-    /*
-    public InputActions inputActions;
-    public PlayerController playerController;
-    */
+    //public InputActions _input;
+
+    private bool canEscape = false;
     
     public bool playerIsClose;
     public bool terminalIsActivated;
@@ -23,6 +23,13 @@ public class TerminalController : MonoBehaviour
 
     public StateEnemyAI stateEnemyAI;
     public GameObject o;
+
+    public float holdDuration = 1f;
+    public Image loadCircle;
+
+    private float holdTimer = 0;
+    private bool isHolding;
+    private bool playerInteracts = false;
     
     
     void Start()
@@ -30,6 +37,7 @@ public class TerminalController : MonoBehaviour
         terminalLight = GetComponentInChildren<Light2D>();
         o = GameObject.Find("Enemy");
         stateEnemyAI = GameObject.Find("Enemy").GetComponent<StateEnemyAI>();
+        //_input = GetComponent<InputActions>();
         
     }
     
@@ -39,6 +47,9 @@ public class TerminalController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsClose = true;
+            float xAxis = transform.position.x;
+            float yAxis = transform.position.y;
+            loadCircle.transform.position = new Vector2(xAxis + 1, yAxis);
         }
     }
 
@@ -47,32 +58,51 @@ public class TerminalController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsClose = false;
+            ResetHold();
         }
     }
 
     void Update()
     {
+        if (canEscape != true && eventManager.AllTerminalsActive())
+        {
+            terminalCounter.text = ("ESCAPE");
+            print("ESCAPE");
+            spaceShuttle.GetComponent<SpriteRenderer>().sprite = spaceShuttleActivatedSprite;
+            stateEnemyAI.CummingForYourAss();
+            canEscape = true;
+        }
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3)) 
             && playerIsClose && terminalIsActivated == false)
         {
-            GetComponent<SpriteRenderer>().sprite = activatedTerminalSprite;
-            terminalLight.color = Color.cyan;
-            
-            terminalIsActivated = true;
-            eventManager.activatedTerminals++;
-            print(eventManager.activatedTerminals + " / 3 terminals activated.");
-            AudioManagerController.instance.PlayOneShot(FMODEvents.instance.TerminalSound, this.transform.position);
-
-            if (eventManager.AllTerminalsActive())
+            if (Input.GetKeyUp(KeyCode.E))
             {
-                terminalCounter.text = ("ESCAPE");
-                spaceShuttle.GetComponent<SpriteRenderer>().sprite = spaceShuttleActivatedSprite;
-                stateEnemyAI.CummingForYourAss();
+                ResetHold();
             }
             else
             {
-                terminalCounter.text = (eventManager.activatedTerminals + " / 3 terminals activated.");
+                isHolding = true;
+                holdTimer += 0.2f;
+                loadCircle.fillAmount = holdTimer / holdDuration;
+                if (holdTimer >= holdDuration && !eventManager.AllTerminalsActive())
+                {
+                    GetComponent<SpriteRenderer>().sprite = activatedTerminalSprite;
+                    terminalLight.color = Color.cyan;
+            
+                    terminalIsActivated = true;
+                    eventManager.activatedTerminals++;
+                    terminalCounter.text = (eventManager.activatedTerminals + " / 3 terminals activated.");
+                    AudioManagerController.instance.PlayOneShot(FMODEvents.instance.TerminalSound, this.transform.position);
+                    
+                }
             }
         }
+    }
+
+    private void ResetHold()
+    {
+        isHolding = false;
+        holdTimer = 0;
+        loadCircle.fillAmount = 0;
     }
 }
