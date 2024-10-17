@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
@@ -7,26 +9,39 @@ public class EventManager : MonoBehaviour
     public GameObject player;
     public Teehee teehee;
 
-    public bool AllTerminalsActive()
+    private InputActions _input;
+
+    private void Awake()
     {
-        if (activatedTerminals == 3)
+        _input = GetComponent<InputActions>();
+        if (_input == null)
         {
-            return true;
+            Debug.LogError("No input actions found on object '" + this.name + "'.");
         }
-        return false;
     }
 
+    public bool AllTerminalsActive()
+    {
+        return (activatedTerminals == 3);
+    }
+
+#if false
     public void Update()
     {
         if (!playerController.playerIsHiding)
             return;
-        if (playerController.playerIsHiding && Input.GetKeyDown(KeyCode.E))
+        if (playerController.playerIsHiding && _input.interact)
         {
-            player.SetActive(true);
+            playerController.playerEnabled = true;
+
+            //player.SetActive(true);
             player.transform.position = playerController.entryLocation;
             playerController.playerIsHiding = false;
             print("you are no longer hidden.");
             playerController.firingMethodPlayerUnhides();
         }
     }
+#else
+    
+#endif
 }

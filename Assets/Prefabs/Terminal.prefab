@@ -233,6 +233,8 @@ MonoBehaviour:
   terminalCounter: {fileID: 0}
   stateEnemyAI: {fileID: 0}
   o: {fileID: 0}
+  holdDuration: 1
+  loadCircle: {fileID: 0}
 --- !u!1001 &8323630713188312276
 PrefabInstance:
   m_ObjectHideFlags: 0

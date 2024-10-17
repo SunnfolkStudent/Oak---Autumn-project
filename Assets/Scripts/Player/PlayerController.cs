@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private InputActions _input;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
+    private SpriteRenderer playerSpriteRenderer;
     
     //movement variables
     public float walkSpeed = 4f;
@@ -58,16 +59,26 @@ public class PlayerController : MonoBehaviour
 
     public GameObject hidingSpot;
     public bool playerIsHiding;
+    public bool playerEnabled = true;
 
     public bool terminalInteractedWith;
     
+    //space shuttle interaction
 
-
-
+    public GameObject dialoguePanel;
+    public TextMeshProUGUI dialogueText;
+    public string[] dialogue;
+    private int index;
+    public float wordSpeed;
+    public GameObject contButton;
+    public GameObject spaceShuttle;
+    
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _animator            = GetComponent<Animator>();
+        _rigidbody2D         = GetComponent<Rigidbody2D>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -96,6 +107,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!playerEnabled)
+        {
+            _rigidbody2D.linearVelocity = Vector2.zero;
+            return;
+        }
+        
         if (TestIfSprinting() && staminaEmpty == false)
         {
             currentSpeed = sprintSpeed;
@@ -139,6 +156,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 hidingSpotPosition;
     public void OnTriggerEnter2D(Collider2D other)
     {
+        if (!playerEnabled) return;
+        
         if (other.GameObject().layer == 11) //sjekk om andre objekt er på interactables layer
         {
             if (other.CompareTag("SpaceShuttle"))
@@ -169,6 +188,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!playerEnabled) return;
+        
         if (other.GameObject().layer == 11)
         {
             if (other.CompareTag("SpaceShuttle"))
@@ -191,6 +212,26 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
+        if (playerIsHiding && _input.interact)
+        {
+            playerEnabled = true;
+            
+            transform.position = entryLocation;
+            playerIsHiding = false;
+            print("Du har kommet ut av skapet!");
+            firingMethodPlayerUnhides();
+            return;
+        } 
+
+        if (!playerEnabled)
+        {
+            playerSpriteRenderer.enabled = false;
+            return;
+        }
+        // NOTE: Anything after this won't run when the player is not active!
+        
+        playerSpriteRenderer.enabled = true;
+ 
         if (_input.interact && playerCanInteractSpaceShuttle)
         {
             SpaceShuttleInteract();
@@ -202,6 +243,7 @@ public class PlayerController : MonoBehaviour
         else if (_input.interact && playerCanInteractTerminal)
         {
             terminalInteractedWith = true;
+            
         }
     }
 
@@ -212,15 +254,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //space shuttle interaction
-
-    public GameObject dialoguePanel;
-    public TextMeshProUGUI dialogueText;
-    public string[] dialogue;
-    private int index;
-    public float wordSpeed;
-    public GameObject contButton;
-    public GameObject spaceShuttle;
     IEnumerator Typing()
     {
         foreach (char letter in dialogue[index].ToCharArray())
@@ -254,8 +287,8 @@ public class PlayerController : MonoBehaviour
             print("YOU ESCAPED!");
             spaceShuttle.transform.position = new Vector3(4.965f, spaceShuttle.transform.position.y, 0);
             firingMethodPlayerEscapes();
-            gameObject.SetActive(false);
-
+            playerEnabled = false;
+            //gameObject.SetActive(false);
         }
 
         else
@@ -263,7 +296,7 @@ public class PlayerController : MonoBehaviour
             print("Activate all the terminals first!");
             if (dialoguePanel.activeInHierarchy)
             {
-                ZeroText();
+                ZeroText(); //only happens if player is within space shuttle hitbox. not good
             }
             else
             {
@@ -308,9 +341,9 @@ public class PlayerController : MonoBehaviour
             print("you are now hidden.");
             firingMethodPlayerHides();
             //teehee.PlayerHides();
-            
-            
-            gameObject.SetActive(false);
+
+            playerEnabled = false;
+            //gameObject.SetActive(false);
             playerIsHiding = true;
         }
     }

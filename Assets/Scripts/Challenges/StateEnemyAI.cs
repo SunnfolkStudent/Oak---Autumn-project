@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using FMODUnity;
+using UnityEngine.Serialization;
 
 public class StateEnemyAI : MonoBehaviour
 {
@@ -26,10 +27,11 @@ public class StateEnemyAI : MonoBehaviour
     }
     
     // Public usual variables
-    public Transform target;
+    public Transform realTarget;
     public int currentPoint;
     public Transform[] patrolPoints;
     
+    private GameObject emptyTargetObject;
     
     // Variable that enables the Chase switchcase to function only if true
     public bool canChase;
@@ -81,7 +83,7 @@ public class StateEnemyAI : MonoBehaviour
     // Just the enemy RigidBody and its CircleCollider
     private Rigidbody2D rb;
     private CircleCollider2D cc;
-    private GameObject o;
+    private GameObject playerObject;
     private GameObject t;
     private GameObject e;
     private Animator enemySprite;
@@ -94,10 +96,10 @@ public class StateEnemyAI : MonoBehaviour
     void Start()
     {
         // Getting PlayerController Script
-        o = GameObject.Find("RealPlayer");
+        playerObject = GameObject.Find("RealPlayer");
         t = GameObject.Find("/Enemy/Monster");
         e = GameObject.Find("Enemy");
-        playerController = o.GetComponent<PlayerController>();
+        playerController = playerObject.GetComponent<PlayerController>();
         enemySprite = t.GetComponent<Animator>();
         
         
@@ -107,7 +109,7 @@ public class StateEnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         cc = GetComponent<CircleCollider2D>();
-        playerrb2d = o.GetComponent<Rigidbody2D>();
+        playerrb2d = playerObject.GetComponent<Rigidbody2D>();
         
         LayerMask mask = LayerMask.GetMask("Player");
         
@@ -118,16 +120,23 @@ public class StateEnemyAI : MonoBehaviour
         // Using enum state to make Patrol the default state
         state = State.Patrol;
         
+        emptyTargetObject = new GameObject();
+        emptyTargetObject.SetActive(false);
+        
+        
         // Repeats mentioned void function with 0f cooldown and .5f seconds between each repetition
         InvokeRepeating("UpdatePatrolPoint", 0f, .5f);
         InvokeRepeating("UpdateSprite", 0f, .1f);
     }
-    
-    
 
     void UpdatePatrolPoint()
     {
-
+        var target = realTarget;
+        if (!playerController.playerEnabled)
+        {
+            target = emptyTargetObject.transform;
+        }
+        
         switch (state)
         {
             case State.Dead:
@@ -169,7 +178,7 @@ public class StateEnemyAI : MonoBehaviour
             case State.Chase:
                 if (canChase)
                 {
-                    if (seeker.IsDone())
+                    if (seeker.IsDone() && playerController.playerEnabled)
                     {
                         seeker.StartPath(rb.position, target.position, OnPathComplete);
                     }
@@ -201,9 +210,7 @@ public class StateEnemyAI : MonoBehaviour
                 break;
         }
         
-        isThePlayerHiding = playerController.playerIsHiding;
-        
-        if (isThePlayerHiding)
+        if (playerController.playerIsHiding)
             canChase = false;
     }
 
@@ -327,7 +334,7 @@ public class StateEnemyAI : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         int randbitch = Random.Range(1, 3);
-        if (other.gameObject.CompareTag("Player") && state == State.Chase) 
+        if (playerController.playerEnabled && other.gameObject.CompareTag("Player") && state == State.Chase) 
         {
             
             switch (enemyDirection)
@@ -379,7 +386,7 @@ public class StateEnemyAI : MonoBehaviour
             case State.Dead:
                 return;
         }
-        Vector2 targetDir = target.position - transform.position;
+        Vector2 targetDir = realTarget.position - transform.position;
         Vector2 enemyPosition = transform.position;
         RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetDir);
         var playerHorizontal = playerrb2d.linearVelocityX;
@@ -394,7 +401,6 @@ public class StateEnemyAI : MonoBehaviour
             
         
         if (hit.collider.CompareTag("Player") && (playerHorizontal > 0f || playerVertical > 0f) && state != State.Chase)
-            
         {
             state = State.Chase;
             canChase = true;
@@ -444,25 +450,25 @@ public class StateEnemyAI : MonoBehaviour
             case State.Patrol:
                 break;
             case State.Chase:
-                if (target.position.x - transform.position.x > 2f)
+                if (realTarget.position.x - transform.position.x > 2f)
                 {
                     enemyDirection = EnemyDirection.Right;
                     break;
                 }
                 
-                if (target.position.x + 2f <= transform.position.x)
+                if (realTarget.position.x + 2f <= transform.position.x)
                 {
                     enemyDirection = EnemyDirection.Left;
                     break;
                 }
                 
-                if (target.position.y - transform.position.y < 0f && (target.position.x - transform.position.x >= -2f || target.position.x + 2f >= transform.position.x))
+                if (realTarget.position.y - transform.position.y < 0f && (realTarget.position.x - transform.position.x >= -2f || realTarget.position.x + 2f >= transform.position.x))
                 {
                     enemyDirection = EnemyDirection.Down;
                     break;
                 }
 
-                if (target.position.y - transform.position.y > 0f && (target.position.x - transform.position.x >= -2f || target.position.x + 2f >= transform.position.x))
+                if (realTarget.position.y - transform.position.y > 0f && (realTarget.position.x - transform.position.x >= -2f || realTarget.position.x + 2f >= transform.position.x))
                 {
                     enemyDirection = EnemyDirection.Up;
                     break;
