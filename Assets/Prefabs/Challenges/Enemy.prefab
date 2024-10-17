@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51579e5816fe494d9c26aa4f1fed495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  realTarget: {fileID: 0}
   currentPoint: 0
   patrolPoints:
   - {fileID: 0}

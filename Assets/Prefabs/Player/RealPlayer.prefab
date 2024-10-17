@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3803828426580843134}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.4, y: -2.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -178,8 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 0}
-  walkSpeed: 5
-  sprintSpeed: 10
+  walkSpeed: 3.5
+  sprintSpeed: 5
   currentSpeed: 0
   stamina: 3
   maxStamina: 3
@@ -191,10 +191,10 @@ MonoBehaviour:
   playerCanHide: 0
   playerCanInteractHidingSpot: 0
   playerCanInteractTerminal: 0
-  hidingSpot: {fileID: 8614835017644926788, guid: 474f7fe8eaa4d1b48a29a9c143298b11, type: 3}
+  hidingSpot: {fileID: 8614835017644926788, guid: 9205680cfcdd5e548914d3dff5b91193, type: 3}
   playerIsHiding: 0
+  playerEnabled: 1
   terminalInteractedWith: 0
-  hidingSpotPosition: {x: 0, y: 0, z: 0}
   dialoguePanel: {fileID: 0}
   dialogueText: {fileID: 0}
   dialogue:
@@ -202,6 +202,8 @@ MonoBehaviour:
   wordSpeed: 0.03
   contButton: {fileID: 0}
   spaceShuttle: {fileID: 0}
+  activatedSpaceShuttle: {fileID: -2242346358091795650, guid: 38e1646ab38de3e4db0e8a62cbc7c290, type: 3}
+  hidingSpotPosition: {x: 0, y: 0, z: 0}
   entryLocation: {x: 0, y: 0, z: 0}
   openLocker: {fileID: 0}
   openLockerSide: {fileID: 0}
