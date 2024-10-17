@@ -7,12 +7,14 @@ public class InputActions : MonoBehaviour
     public Vector2 Movement;
     public bool interact;
     public bool sprint;
+    public bool interactHeld;
 
     public void Update()
     {
         Movement = _inputSystem.Player.Move.ReadValue<Vector2>();
         interact = _inputSystem.Player.Interact.WasPressedThisFrame();
         sprint = _inputSystem.Player.Sprint.IsPressed();
+        interactHeld = _inputSystem.Player.Interact.IsPressed();
     }
 
     public bool Interact()

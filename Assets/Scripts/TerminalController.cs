@@ -1,13 +1,14 @@
 using UnityEngine;
 using FMODUnity;
 using NUnit.Framework.Constraints;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class TerminalController : MonoBehaviour
 {
     public EventManager eventManager;
-    //public InputActions _input;
+    public InputActions _input;
 
     private bool canEscape = false;
     
@@ -32,12 +33,14 @@ public class TerminalController : MonoBehaviour
     private bool playerInteracts = false;
     
     
+    
     void Start()
     {
         terminalLight = GetComponentInChildren<Light2D>();
         o = GameObject.Find("Enemy");
         stateEnemyAI = GameObject.Find("Enemy").GetComponent<StateEnemyAI>();
         //_input = GetComponent<InputActions>();
+        _input = GetComponent<InputActions>();
         
     }
     
@@ -62,7 +65,7 @@ public class TerminalController : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (canEscape != true && eventManager.AllTerminalsActive())
         {
@@ -72,6 +75,39 @@ public class TerminalController : MonoBehaviour
             stateEnemyAI.CummingForYourAss();
             canEscape = true;
         }
+        if (TestIfHolding() && playerIsClose && !terminalIsActivated)
+        {
+            holdTimer += 0.01f;
+            loadCircle.fillAmount = holdTimer / holdDuration;
+            if (holdTimer >= holdDuration && !eventManager.AllTerminalsActive())
+            {
+                GetComponent<SpriteRenderer>().sprite = activatedTerminalSprite;
+                terminalLight.color = Color.cyan;
+            
+                terminalIsActivated = true;
+                eventManager.activatedTerminals++;
+                terminalCounter.text = (eventManager.activatedTerminals + " / 3 terminals activated.");
+                AudioManagerController.instance.PlayOneShot(FMODEvents.instance.TerminalSound, this.transform.position);
+                    
+            }
+
+        }
+    }
+
+    bool TestIfHolding()
+    {
+        if (_input.interactHeld)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
+    void Update()
+    {
+        
+        /*
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3)) 
             && playerIsClose && terminalIsActivated == false)
         {
@@ -96,7 +132,7 @@ public class TerminalController : MonoBehaviour
                     
                 }
             }
-        }
+        }*/
     }
 
     private void ResetHold()

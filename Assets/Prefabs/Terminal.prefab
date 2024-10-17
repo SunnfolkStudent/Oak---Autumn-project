@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1101675905533460919}
   - component: {fileID: 1789523353790898215}
   - component: {fileID: -6759616995904583343}
+  - component: {fileID: -6193226589189012084}
   m_Layer: 11
   m_Name: Terminal
   m_TagString: Terminal
@@ -126,7 +127,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000023841858, y: -0.22097111}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -136,7 +137,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.2232535, y: 1.5580578}
   m_EdgeRadius: 0
 --- !u!50 &1101675905533460919
 Rigidbody2D:
@@ -224,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 0}
+  _input: {fileID: 0}
   playerIsClose: 0
   terminalIsActivated: 0
   activatedTerminalSprite: {fileID: -3232200050199402664, guid: 5b7f39287c378934da25eaa0c7656b2e, type: 3}
@@ -235,6 +237,22 @@ MonoBehaviour:
   o: {fileID: 0}
   holdDuration: 1
   loadCircle: {fileID: 0}
+--- !u!114 &-6193226589189012084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679668123616232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00a8c89b786e67409a49f83726a469d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Movement: {x: 0, y: 0}
+  interact: 0
+  sprint: 0
+  interactHeld: 0
 --- !u!1001 &8323630713188312276
 PrefabInstance:
   m_ObjectHideFlags: 0

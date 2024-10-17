@@ -31,6 +31,8 @@ public class HighScoreController : MonoBehaviour
 
     public void MenuScore()
     {
+        if (PlayerPrefs.GetInt("CurrentScore") > 100)
+            PlayerPrefs.SetInt("CurrentScore", 100);
         if (PlayerPrefs.GetInt("CurrentScore") > beginningHighScore)
         {
             highScore = (100 - PlayerPrefs.GetInt("CurrentScore"));
