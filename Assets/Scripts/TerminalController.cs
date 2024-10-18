@@ -88,7 +88,6 @@ public class TerminalController : MonoBehaviour
                 eventManager.activatedTerminals++;
                 terminalCounter.text = (eventManager.activatedTerminals + " / 3 terminals activated.");
                 AudioManagerController.instance.PlayOneShot(FMODEvents.instance.TerminalSound, this.transform.position);
-                    
             }
 
         }

@@ -416,7 +416,7 @@ public class StateEnemyAI : MonoBehaviour
         _LFP = true;
         coRoutineCounter += 1;
 
-        if (coRoutineCounter == 5)
+        if (coRoutineCounter == 3)
             state = State.Patrol;
         
         yield return new WaitForSeconds(1);

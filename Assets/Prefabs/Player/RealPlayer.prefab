@@ -202,7 +202,6 @@ MonoBehaviour:
   wordSpeed: 0.03
   contButton: {fileID: 0}
   spaceShuttle: {fileID: 0}
-  activatedSpaceShuttle: {fileID: -2242346358091795650, guid: 38e1646ab38de3e4db0e8a62cbc7c290, type: 3}
   hidingSpotPosition: {x: 0, y: 0, z: 0}
   entryLocation: {x: 0, y: 0, z: 0}
   openLocker: {fileID: 0}
@@ -222,6 +221,7 @@ MonoBehaviour:
   Movement: {x: 0, y: 0}
   interact: 0
   sprint: 0
+  interactHeld: 0
 --- !u!95 &1529219021054932105
 Animator:
   serializedVersion: 7

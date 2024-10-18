@@ -231,7 +231,8 @@ MonoBehaviour:
   activatedTerminalSprite: {fileID: -3232200050199402664, guid: 5b7f39287c378934da25eaa0c7656b2e, type: 3}
   terminalLight: {fileID: 6985467422033091910}
   spaceShuttle: {fileID: 0}
-  spaceShuttleActivatedSprite: {fileID: -5597284880801261184, guid: 039e0a83ee7dc00448a83f326dbc8571, type: 3}
+  spaceShuttleActivatedSprite: {fileID: 1404028623067837608, guid: 4f7d42f1f029eb943b012f18311e27b1, type: 3}
+  spaceShuttleRenderer: {fileID: 0}
   terminalCounter: {fileID: 0}
   stateEnemyAI: {fileID: 0}
   o: {fileID: 0}

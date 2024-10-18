@@ -278,7 +278,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    public SpaceShuttleActive spaceShuttleActive;
 
     public void SpaceShuttleInteract()
     {
