@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer playerSpriteRenderer;
     
     //movement variables
-    public float walkSpeed = 4f;
+    public float walkSpeed = 3.5f;
     public float sprintSpeed = 8f;
     public float currentSpeed;
 
@@ -39,29 +39,28 @@ public class PlayerController : MonoBehaviour
     private const string _lastVertical = "LastVertical";
 
     //stamina variables
-    public float stamina = 3f;
-    public float maxStamina = 3f;
-    public float staminaDecreaseRate = 1f;
-    public float staminaIncreaseRate = 1f;
-    public bool staminaEmpty = false;
+    private float stamina = 3f;
+    private float maxStamina = 3f;
+    private float staminaDecreaseRate = 1f;
+    private float staminaIncreaseRate = 1f;
+    private bool staminaEmpty;
 
     //UI variables
     public GameObject popUp;
 
     //interaction variables
     public bool playerCanInteractSpaceShuttle; //må jo være en bedre måte å gjøre dette på tenkjar eg
-    public bool playerCanHide;
     
     //audio
     private EventInstance playerFootsteps;
-    public bool playerCanInteractHidingSpot;
-    public bool playerCanInteractTerminal;
+    private bool playerCanInteractHidingSpot;
+    private bool playerCanInteractTerminal;
 
     public GameObject hidingSpot;
     public bool playerIsHiding;
     public bool playerEnabled = true;
 
-    public bool terminalInteractedWith;
+    private bool terminalInteractedWith;
     
     //space shuttle interaction
 
@@ -69,8 +68,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public string[] dialogue;
     private int index;
-    public float wordSpeed;
-    public GameObject contButton;
+    private float wordSpeed = 0.04f;
     public GameObject spaceShuttle;
     
 
@@ -186,6 +184,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator WaitALil()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ZeroText();
+    }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!playerEnabled) return;
@@ -195,6 +198,10 @@ public class PlayerController : MonoBehaviour
             if (other.CompareTag("SpaceShuttle"))
             {
                 playerCanInteractSpaceShuttle = false;
+                if (dialoguePanel.activeInHierarchy)
+                {
+                    StartCoroutine(nameof(WaitALil));
+                }
                 
             }
             else if (other.CompareTag("HidingSpot"))
@@ -228,6 +235,8 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.enabled = false;
             return;
         }
+        
+        
         // NOTE: Anything after this won't run when the player is not active!
         
         playerSpriteRenderer.enabled = true;
@@ -263,9 +272,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /*
     public void NextLine()
     {
-        contButton.SetActive(false);
         if (index < dialogue.Length - 1)
         {
             index++;
@@ -277,9 +286,9 @@ public class PlayerController : MonoBehaviour
             ZeroText();
         }
     }
+    */
 
     public SpaceShuttleActive spaceShuttleActive;
-
     public void SpaceShuttleInteract()
     {
         if (eventManager.AllTerminalsActive())
@@ -288,17 +297,12 @@ public class PlayerController : MonoBehaviour
             spaceShuttle.transform.position = new Vector3(4.965f, spaceShuttle.transform.position.y, 0);
             firingMethodPlayerEscapes();
             playerEnabled = false;
-            //gameObject.SetActive(false);
         }
 
         else
         {
             print("Activate all the terminals first!");
-            if (dialoguePanel.activeInHierarchy)
-            {
-                ZeroText(); //only happens if player is within space shuttle hitbox. not good
-            }
-            else
+            if (!dialoguePanel.activeInHierarchy)
             {
                 dialoguePanel.SetActive(true);
                 StartCoroutine(Typing());
@@ -306,10 +310,9 @@ public class PlayerController : MonoBehaviour
 
             if (dialogueText.text == dialogue[index])
             {
-                contButton.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    NextLine();
+                    //NextLine();
                 }
             }
         }

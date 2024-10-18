@@ -4,7 +4,7 @@ using FMODUnity;
 public class Teehee : MonoBehaviour
 {
     public PlayerController playerController;
-    public Animator animator;
+    private Animator animator;
 
     public void Start()
     {

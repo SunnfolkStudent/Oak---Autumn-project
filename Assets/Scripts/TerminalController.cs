@@ -10,10 +10,10 @@ public class TerminalController : MonoBehaviour
     public EventManager eventManager;
     public InputActions _input;
 
-    private bool canEscape = false;
+    private bool canEscape;
     
-    public bool playerIsClose;
-    public bool terminalIsActivated;
+    private bool playerIsClose;
+    private bool terminalIsActivated;
     public Sprite activatedTerminalSprite;
     public Light2D terminalLight;
 
@@ -25,7 +25,7 @@ public class TerminalController : MonoBehaviour
     public StateEnemyAI stateEnemyAI;
     public GameObject o;
 
-    public float holdDuration = 1f;
+    private float holdDuration = 1f;
     public Image loadCircle;
 
     private float holdTimer = 0;
